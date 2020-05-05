@@ -1,0 +1,51 @@
+*,
+*::before,
+*::after {
+  //   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  --clr-white: #f7f7f7;
+
+  --clr-bg: var(--clr-white);
+
+  background: var(--clr-bg);
+  font-family: "Poppins", sans-serif;
+}
+
+// ==============================
+// Typography
+// ==============================
+h3 {
+  padding: 0.5em 1em;
+  border: 2px solid lime;
+  display: inline-block;
+}
+
+p {
+  letter-spacing: 1px;
+  line-height: 1.6;
+}
+
+// ==============================
+// Layout
+// ==============================
+.header {
+  min-height: 10vh;
+}
+
+.main {
+  min-height: 90vh;
+  //   border: 2px solid black;
+  width: 80%;
+  margin: 0 auto;
+}
+
+// ==============================
+// Main
+// ==============================
+.page-title {
+  text-align: center;
+}

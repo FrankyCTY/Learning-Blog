@@ -1,0 +1,40 @@
+*,
+*::before,
+*::after {
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  --clr-white: #f7f7f7;
+  --clr-bg: var(--clr-white);
+  background: var(--clr-bg);
+  font-family: "Poppins", sans-serif;
+}
+
+h3 {
+  padding: 0.5em 1em;
+  border: 2px solid lime;
+  display: inline-block;
+}
+
+p {
+  letter-spacing: 1px;
+  line-height: 1.6;
+}
+
+.header {
+  min-height: 10vh;
+}
+
+.main {
+  min-height: 90vh;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.page-title {
+  text-align: center;
+}
+/*# sourceMappingURL=mix.css.map */
