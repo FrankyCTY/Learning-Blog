@@ -188,9 +188,9 @@
         <p>It works because we use the <span class="clr-good">NEW</span> keyword, it will create an object from the constructor function. Remember that we have to use <span class="clr-good">THIS</span> keyword in the constructor function for inheritance.</p>
 
 
-        <p><strong class="clr-bad">//Why we don't put it into the constructor function?</strong></p>
+        <p><strong class="clr-bad" id="no-copy">//Why we don't put it into the constructor function?</strong></p>
         <p>The elements in the constructor function will be created each time we create an instance (object) with it. So since don't want to occupy to many spaces in the memory, we add the function into the prototype.</p>
-
+        <p class="clr-bad">Unlike other oop languages like Java and C++, we can save memories in this way using prototype chain. But thats not the case in those languages.</p>
         <h3 class="page-subtitle">
             Class - the syntactic sugar
         </h3>
@@ -219,6 +219,18 @@
 
         <p>It looks kinda alike the prototype inheritance with constructor function.</p>
         <p>But we can now encapsulate the method (fight()) into the same 'box' without using 'prototype' keyword outside the 'box'.</p>
+
+        <p class="clr-good">Inheritance is all about object inherits from object and its all about __proto__ links to parent's prototype via the <span class="clr-bad">prototype chain.</span></p>
+
+        <div class="img-wrapper">
+            <img src="./img/prototype chain.PNG" alt="">
+        </div>
+
+        <p>In the picture, the Ogre is actually just a class that wraps a constructor function, <span class="clr-bad">constructor function itselfs doesn't give any inheritance power but it allows us to use NEW keyword to play with THIS keyword.</span></p>
+        <p>The actually <span class="clr-bad">inheritance</span> we use on <span class="clr-bad">attack() or makeFort()</span> are happening in the <span class="clr-good">prototype chain</span>.</p>
+        <p>And this is because we don't want the methods to be copied every time we create a new instance from the class (or say using the constructor function), thats why we use it outside of the constructor in the class <a href="#no-copy">(actually using prototype behind the scene)</a>.</p>
+        
+
     </main>
   </body>
 </html>
