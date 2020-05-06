@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font awesome  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+      integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="
+      crossorigin="anonymous"
+    />
+
+    <!-- iconfont -->
+    <link
+      rel="stylesheet"
+      href="//at.alicdn.com/t/font_1791755_n1rvnnmldp.css"
+    />
+
+    <!-- css -->
+    <link rel="stylesheet" href="./SCSS/mix.css" />
+
+    <title>Blog</title>
+  </head>
+  <body>
+    <header class="header">
+      <nav></nav>
+    </header>
+
+    <main class="main">
+      <h1 class="page-title">
+        Prototypal inheritance && class
+      </h1>
+      <h3 class="page-subtitle">
+        Why do we need the inheritance?
+      </h3>
+      <div class="page-content">
+        <p>
+          Using inheritance with either prototype or class allows us to save the
+          memory usage of the code. It gives us
+          <span class="clr-good">reusability</span> on the same piece of code
+          and can also enhance the redability. (Although class will give us
+          better redability and encapsulation, it is actually the prototype
+          inheritance behind the scene.)
+        </p>
+
+        <h6 class="clr-bad">
+          BAD Practice - no reusability and wasting memories
+        </h6>
+
+        <pre>
+            <code>
+                const fighter = {
+                    name: 'fighter01',
+                    fight() {
+                        console.log(`${this.name} is fighting!!)
+                    }
+                }
+
+                const healer = {  
+                    name: 'fighter01',
+                    fight() {
+                        console.log(`${this.name} is fighting!!)
+                    }      
+                }
+            </code>
+        </pre>
+
+        <p></p>
+      </div>
+      <h3 class="page-subtitle">
+        Prototypal inheritance
+      </h3>
+      <div class="page-content">
+        <p class="question">
+          <strong>What is prototype?</strong>
+        </p>
+        <div class="img-wrapper">
+          <img src="./img/Prototype01.PNG" alt="" />
+        </div>
+        <p>
+          <span class="clr-good">__proto__</span> appears in every object
+          (almost everything in javascript are object). As you can see from the
+          above picture, we can see
+          <span class="clr-good">__proto__</span> lives in the current object's
+          prototype and it links to the above parent's prototype. It is like a
+          <span class="clr-good">chain</span> that connects two objects together
+          to create an inhertance.
+        </p>
+
+        <p class="clr-bad">
+          __proto__ can be assigned directly to other object's prototype but it
+          gives bad performance.
+        </p>
+
+        <p class="question">
+          <strong>I heard that objects do not have prototype?</strong>
+        </p>
+
+        <p>
+          Object has <span class="clr-good">__proto__</span> inside it but
+          <span class="clr-bad">does not</span> contain any
+          <span class="clr-bad">prototype</span>.
+        </p>
+        <p>
+          <span class="clr-good">functions</span> are the only thing that
+          actually have prototype
+          <span class="clr-good"
+            >althought functions are also object at then end just like [].</span
+          >
+        </p>
+
+        <div class="img-wrapper">
+          <img class="img--two" src="./img/prototype func.PNG" alt="" />
+          <img class="img--two" src="./img/prototype object.PNG" alt="" />
+        </div>
+
+        <p>
+          <span class="clr-good">Prototype</span> in functions can be used to
+          create inheritance that can be inherited and saved to their prototype.
+        </p>
+
+        <pre>
+            <code>
+                function a() {}
+
+                a.prototype.go = function () {
+                return "go go go!";
+                };
+
+                const b = a;
+
+                console.log(b.prototype.go()); // inherited using its own __proto__ from a.prototype
+            </code>
+        </pre>
+
+        <p>objects can use <span class="clr-good">Object.create</span> to <span class="clr-good">create</span> object that is <span class="clr-good">inherited</span> from the other object.
+
+        <pre>
+            <code>
+                let human = {
+                    exist: true,
+                    };
+                    
+                let john = Object.create(human);
+                
+                console.log(john);
+                    
+            </code>
+        </pre>
+
+        <div class="img-wrapper">
+            <img src="./img/object create.PNG" alt="">
+        </div>
+
+        <p>exist was actually the property in human</p>
+        <p>After using Object.create() to create john, john will inherit human's properties and it will be saved in __proto__.</p>
+
+        <p class="question">
+            <strong>How to use prototype to create reusable code? <span class="clr-good">Constructor Function</span></strong>
+        </p>
+
+        <pre>
+            <code>
+                function Fighter(name, weapon) {
+                    this.name = name;
+                    this.weapon = weapon;
+                }
+
+                Fighter.prototype.fight = function() {
+                    return `${this.name} is fighting with ${this.weapon}...`; //Why we don't put it into the constructor function?
+                }
+
+                const fighter0001 = new Fighter('fighter0001', 'sword');
+
+                console.log(fighter0001.fight()); //Return -> fighter0001 is fighting with sword...
+            </code>
+        </pre>
+
+        <p class="clr-good">Now we don't need to rewrite the code for any new 'instances'.</p>
+        <p>It works because we use the <span class="clr-good">NEW</span> keyword, it will create an object from the constructor function. Remember that we have to use <span class="clr-good">THIS</span> keyword in the constructor function for inheritance.</p>
+
+
+        <p><strong class="clr-bad">//Why we don't put it into the constructor function?</strong></p>
+        <p>The elements in the constructor function will be created each time we create an instance (object) with it. So since don't want to occupy to many spaces in the memory, we add the function into the prototype.</p>
+
+        <h3 class="page-subtitle">
+            Class - the syntactic sugar
+        </h3>
+
+        <p>Javascript adopts prototype but it is actually not very readable expecially for the programmers from other languages.</p>
+        <p>Thats why the javascript team added 'Classes' into it... But it actually runs under <span class="clr-good">prototype</span> behind the scene.</p>
+
+        <pre>
+            <code>
+                class Fighter {
+                    constructor(name, weapon) {
+                        this.name = name;
+                        this.weapon = weapon;
+                    }
+
+                    fight() {
+                        return `${this.name} is fighting with ${this.weapon}...`; //Return -> fighter0002 is fighting with broken sword...
+                    }
+                }
+
+                const fighter0002 = new Fighter('fighter0002', 'broken sword');
+
+                console.log(fighter0002.fight());
+            </code>
+        </pre>
+
+        <p>It looks kinda alike the prototype inheritance with constructor function.</p>
+        <p>But we can now encapsulate the method (fight()) into the same 'box' without using 'prototype' keyword outside the 'box'.</p>
+    </main>
+  </body>
+</html>

@@ -45,12 +45,172 @@
         <p>
           To communicate with the computer, we need some kind of 'translator' to
           translate our javascript code into the language that they can read,
-          binary numbers. V8 is one of the translators that is created for
-          Google chrome and it enhances the running speed to maximum for
-          computer and server. (SpiderMonkey for firefox).
+          binary numbers.
+        </p>
+
+        <p>
+          V8 is one of the translators that is created for Google chrome and it
+          enhances the running speed to maximum for computer and server.
+          (SpiderMonkey for firefox).
         </p>
 
         <p></p>
+      </div>
+      <h3 class="page-subtitle">
+        Lexical scope vs Dynamic scope
+      </h3>
+      <div class="page-content">
+        <p>
+          <strong>Lexical scope + Scope chain</strong> indicates the available
+          resources such as variables can a say function utilize base on the
+          location that it is defined.
+        </p>
+
+        <p>
+          Almost all of the elements in javascript follows lexcial scoping, one
+          of the edge case is the THIS keyword.
+        </p>
+        <h6>Example 1</h6>
+        <pre>
+            <code>
+                const num = 5; // Defined a variabel in the global object
+
+                function func() {
+                return `The number is: ${num}`; //Return -> The number is: 5
+                }
+
+                console.log(func()); // Call the function
+            </code>
+        </pre>
+        <p>
+          NOTE: As you can see, the function func() can acquire the variable
+          from the outter space (Global scope).
+        </p>
+        <h6>Closure as example 2</h6>
+        <pre>
+            <code>
+                const num = 5; // Defined a variabel in the global object
+
+                function func() {
+                    const newNum = 10; // Defined in func()
+                    return function() {
+                        return `The num is still: ${num} and we also have ${newNum}`; //return -> The num is still: 5 and we also have 10
+                    }
+                }
+
+                console.log(func()()); 
+            </code>
+        </pre>
+
+        <p>
+          NOTE: The function lives inside the func() can obtain the data from
+          the outter spaces (func() and global scope.
+        </p>
+
+        <p>
+          <strong>Dynamic scope</strong> is defined by the location the say
+          object is actually called. The THIS keyword is the most popular
+          example.
+        </p>
+
+        <pre>
+            <code>
+                const num = 10;
+
+                function func() {
+                    console.log(this.num);
+                }
+
+                func(); 
+            </code>
+        </pre>
+        <p style="color: limegreen;">
+          Console: 10;
+        </p>
+
+        <p>
+          THIS keyword in the func() points to window (global object). Because
+          the window.func() is actually how we call the func() behind the scene.
+        </p>
+
+        <pre>
+            <code>
+                const num = 10;
+
+                const obj = {
+                    num: 100,
+                    getNum() {
+                        return this.num; //return -> 100
+                    }
+                }
+
+                obj.getNum(); // Call the method INSIDE of an object.
+            </code>
+        </pre>
+
+        <p>
+          NOTE: THIS keyword in the object and the class will point to the
+          object calling them. In the example we use
+          <span style="color: red;">obj</span>.getNum() to call the method, so
+          the THIS keyword points to the obj object.
+        </p>
+
+        <pre>
+            <code>
+                const num = 10;
+
+                const obj = {
+                    num: 100,
+                    getNum: () => {
+                        return num; //return -> 10
+                    }
+                }
+
+                obj.getNum(); // Call the method INSIDE of an object.
+            </code>
+        </pre>
+
+        <p>
+          NOTE: THIS keyword in the object points to windows (global object),
+          because we are using the anonymous function
+          <span style="color: red;">() => {}</span>.
+        </p>
+        <h6>The same thing will happen to this...</h6>
+        <pre>
+            <code>
+                const num = 10;
+
+                const obj = {
+                    num: 100,
+                    getNum()  {
+                        return function() {
+                            return num; //return -> 10
+                        }
+                    }
+                }
+
+                obj.getNum()(); // Call the function that is INSIDE of the method of an object.
+            </code>
+        </pre>
+
+        <h6>Change the function to anonymous function will solve this</h6>
+
+        <pre>
+            <code>
+                const num = 10;
+
+                const obj = {
+                    num: 100,
+                    getNum()  {
+                        return () => {
+                            return this.num; //return -> 100
+                        }
+                    }
+                }
+
+                obj.getNum()(); // Call the anonymous function that is INSIDE of the method of an object.
+            </code>
+        </pre>
       </div>
     </main>
   </body>
