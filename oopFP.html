@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font awesome  -->
+    <link
+      rel="stylesheet"
+      href="https:+//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+      integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="
+      crossorigin="anonymous"
+    />
+
+    <!-- iconfont -->
+    <link
+      rel="stylesheet"
+      href="//at.alicdn.com/t/font_1791755_n1rvnnmldp.css"
+    />
+
+    <!-- css -->
+    <link rel="stylesheet" href="./SCSS/mix.css" />
+
+    <title>OOP vs FP</title>
+  </head>
+  <body>
+    <header class="header">
+      <nav></nav>
+    </header>
+
+    <main class="main">
+      <h1 class="page-title">
+        OOP vs FP
+      </h1>
+      <h3 class="page-subtitle">
+        Inheritance vs Composition
+      </h3>
+      <div class="page-content">
+
+        <p>
+          <span class="clr-good">OOP</span> focuses on inheritance from a parent class to the child classes. (What it is)</a>
+        </p>
+
+        <p>
+          <span class="clr-good">FP</span> focuses on composition that handle objects or handle a piece of data by composing them from different say pure functions. (What it has)</a>
+        </p>
+
+        <p class="clr-bad">Most programmers tend to use composition over inhertiance, but why?</p>
+
+        <h3 class="page-subtitle">
+            Downside of inheritance
+        </h3>
+
+        <p>Inheritance helps to maximize the reusability of the code but it fixes the code and can lead to a lot of problems in the long run by causing <span class="clr-good">rippling effect</span> to the child classes.</p>
+        <p>Because it causes <strong class="clr-good">tightly coupling.</strong></p>
+
+        <h6>A simple inheritance demostration</h6>
+
+        <pre>
+            <p>
+                User
+                    Watcher
+                    Character
+                        Elf
+                            Young Elf
+                        Orge
+            </p>
+        </pre>
+
+        <p class="clr-bad">What if:</p>
+        <p>- We only want the 'Young Elf' class to have one behaviour (sleep()), but the parent classes actually inherit a bunch of behaviours to it that it doesn't want.</p>
+        <p>- We want the 'Watcher' class to move up to be the parent class of the 'User' class.</p>
+
+        <p class="clr-bad">Everything breaks</p>
+
+        <h3 class="page-subtitle">
+            Composition can solve this
+        </h3>
+
+        <p>We make use of different <span class="clr-good">combination of functions.</span></p>
+        <p>Passing an object and return a new object with required behviours.</p>
+
+        <h6>Demonstration using composition</h6>
+
+        <pre>
+            <code>
+                function getAttack(character) {     // Pure function
+                    return Object.assign({}. character, {attackBehaviour: () =>{}}) // Add attack behaviour and return the new object
+                }
+
+                function Elf(name, weapon, type) {
+                    lef elf {
+                        name,
+                        weapon,
+                        type
+                    }
+
+                    return getAttack(); // Return a Elf instance that has attack behaviour
+                }
+            </code>
+        </pre>
+
+        <p class="clr-good">Now we can compose the object whatever we want.</p>
+        <p>The inheritance is gone, and we compose the 'Elf' object by composing the pure function behaviour and return a new Elf object.</p>
+        <p><strong class="clr-good">NOTE: </strong> We <span class="clr-bad">didn't</span> use constructor function directly, because we want to build this Elf function <span class="clr-good">imperatively</span> so that we can manipulate every behaviour we need to add before returning the Elf object.</p>
+
+
+        <h3 class="page-subtitle">
+            OOP vs FC
+        </h3>
+
+        <p class="clr-good"><strong>Object Oriented Programming: </strong></p>
+        <p class="clr-bad">Encapsulate data and behaviours at the same location</p>
+        <p>Object - First Class Citizen</p>
+        <p class="clr-bad">Many operations on fixed data</p>
+        <p>Stateful</p>
+        <p>Side Effect</p>
+        <p>Imperative</p>
+
+        <p class="clr-good"><strong>Functional Programming: </strong></p>
+        <p class="clr-bad">Data and behaviours are different and should be kept separately.</p>
+        <p>Function - First Class Citizen</p>
+        <p class="clr-bad">Few operations on common data</p>
+        <p>Stateful</p>
+        <p>Pure - NO side effect</p>
+        <p>Declarative</p>
+
+        <h3 class="page-subtitle">
+            When to use them?
+        </h3>
+
+        <p class="clr-good"><strong>Object Oriented Programming: </strong></p>
+        <p>When we have many things (characters) with few operations. </p>
+
+        <p class="clr-good"><strong>Functional Programming: </strong></p>
+        <p>When we have a few things that have a lot of different operations on them.</p>
+        <p>Parallel programming</p>
+
+
+    </main>
+  </body>
+</html>

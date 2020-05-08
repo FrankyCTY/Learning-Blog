@@ -52,6 +52,11 @@ img {
   margin-top: 4em;
 }
 
+.important-block {
+  border: solid 2px red;
+  padding: 0 0.5em;
+}
+
 .header {
   min-height: 10vh;
 }

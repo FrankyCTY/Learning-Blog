@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font awesome  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+      integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="
+      crossorigin="anonymous"
+    />
+
+    <!-- iconfont -->
+    <link
+      rel="stylesheet"
+      href="//at.alicdn.com/t/font_1791755_n1rvnnmldp.css"
+    />
+
+    <!-- css -->
+    <link rel="stylesheet" href="./SCSS/mix.css" />
+
+    <title>Functional Programming</title>
+  </head>
+  <body>
+    <header class="header">
+      <nav></nav>
+    </header>
+
+    <main class="main">
+      <h1 class="page-title">
+        Functional Programming
+      </h1>
+      <h3 class="page-subtitle">
+        What is functional programming?
+      </h3>
+      <div class="page-content">
+
+      <div class="page-content">
+        <p class="question">
+          <strong>Functional Programming features</strong>
+        </p>
+
+        <p>The idea of Functional Programming is that the <strong class="clr-good">data and the function should be separated. (seperation of concerns)</strong></p>
+
+        <p>So that when we debug our code, we don't need to debug this part of the code but aim for others, because they are built with <span class="clr-good">pure functions.</span></p>
+
+        <div class="img-wrapper">
+          <img src="./img/Functional Programming/fcIntnro.PNG" alt="" />
+        </div>
+
+        <p>
+          Functional Programming suggests that the function should be <a href="#pure">pure</a>, so that the program can become <span class="clr-good">predictable</span> and also heigher <span class="clr-good">testability</span>.
+        </p>
+
+        <p>It minimizes the side effect of a function makes in order to increase the readability and decrease the bugs that can be triggered.</p>
+        <p class="clr-bad">Bad practice in FC: Different functions handle the same piece of data at the same time...</p>
+
+        <h3>What is pure functions?</h3>
+
+        <p class="question">
+          <strong>No side effects</strong>
+        </p>
+
+
+        <p>
+          Pure function <span class="clr-bad">should not</span> modify anything outside the function itselfs.
+        </p>
+
+        <p>
+          It suggests that function <span class="clr-good">must return something</span> (since it is not mutating anything outside). <span class="clr-bad">Function without returning something is just a procedure.</span>
+        </p>
+
+
+
+        <pre>
+            <code>
+                const array = [1, 2, 3]; //An array defined outside of the pure function.
+
+                function pureFunc() {
+                    const pureFuncArray = [...array]; // Deep copy the outsider so that we don't need to modify it directly
+
+                    pureFuncArray.pop();
+
+                    return pureFuncArray; // Pure Function always return something
+                }
+            </code>
+        </pre>
+
+        <p>Pure function has to <span class="clr-good">return</span> return something since it <span class="clr-bad">can not</span> modify outsiders.
+
+            <pre>
+                <code>
+                    function notPure() {
+                        console.log('I am not a pure function');
+                    }
+                </code>
+            </pre>
+
+            <p class="clr-bad">It is not a pure function, because it use console.log to commmuniate with the outsiders for displaying text.</p>
+
+            <p class="question">
+                <strong>Same input -> Same output (Referential Transparency)</strong>
+            </p>
+    
+    
+            <p>
+            With the same input, pure functions always return the same output.
+            </p>
+    
+    
+    
+            <pre>
+                <code>
+                    function sum(num1, num2) {
+                        return num1 + num2;
+                    }
+
+                    sum(2, 5); // It always return 7
+
+                    /////////////////////////////////////
+
+                    function timesFive(num) {
+                        return num * 5;
+                    }
+
+                    timesFive(sum(2, 5)) // Always return 35
+
+                    //Referential Transparency
+                    timesFive(7) // Even we switch the sum function to 7 explicitly, the answer will be the same.
+                </code>
+            </pre>
+    
+            <p><span class="clr-good">Referential Transparency</span> indicates the same input will generate the same output, so we can predict the answer. Even we explicitly use the predicted answer to other function, the output of the other function will be the same.
+        
+                <h3>What is Idempotence?</h3>
+
+                <p class="question">
+                  <strong>It is like the same input -> same output in pure function</strong>
+                </p>
+
+                <p>Idempotence function <span class="clr-bad">doesn't have to be</span> a pure function, but it indicates that the same request (API Request) / function call being made multiple times will not change the result. This provides us a <span class="clr-good">predictable</span> result.</p>
+
+                <pre>
+                    <code>
+                        function log(num) {
+                            console.log(num);
+                        }
+
+                        log(5);
+                        log(5);
+                        log(5);
+                        log(5);
+                        log(5); //Always return 5
+                    </code>
+                </pre>
+
+                <p>The above example is <span class="clr-bad">not a pure function</span>, but it is idempotence because it generate the same output no matter how many times we call the function. <span class="clr-good">Just like the API HTTP method (get, delete, put).</span></p>
+
+
+                <div class="img-wrapper">
+                  <img src="./img/Functional Programming/fcGoal.PNG" alt="">
+                </div>
+
+                <p><strong>Reference: </strong><a href="https://www.udemy.com/course/advanced-javascript-concepts/learn/lecture/13829734#overview">https://www.udemy.com/course/advanced-javascript-concepts/learn/lecture/13829734#overview</a></p>
+    </main>
+  </body>
+</html>

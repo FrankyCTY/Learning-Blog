@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font awesome  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+      integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="
+      crossorigin="anonymous"
+    />
+
+    <!-- iconfont -->
+    <link
+      rel="stylesheet"
+      href="//at.alicdn.com/t/font_1791755_n1rvnnmldp.css"
+    />
+
+    <!-- css -->
+    <link rel="stylesheet" href="./SCSS/mix.css" />
+
+    <title>Caching - Memorization</title>
+  </head>
+  <body>
+    <header class="header">
+      <nav></nav>
+    </header>
+
+    <main class="main">
+      <h1 class="page-title">
+        Functional Programming
+      </h1>
+      <h3 class="page-subtitle">
+        What is Memorization?
+      </h3>
+
+      <p>
+        Memorization is a <span class="clr-good">specific form</span> of
+        <span class="clr-good">cache</span>
+        <span class="clr-bad"
+          >that caches the return value of a function bases on its
+          parameter.</span
+        >
+      </p>
+
+      <h6>Before using memorization</h6>
+      <pre>
+          <code>
+            function badFunc(num) {
+                console.log('ran for a long time...');
+                return num + 10; 
+            }
+
+            badFunc(5);
+            badFunc(5);
+            badFunc(5); //Run the function for 3 times
+          </code>
+      </pre>
+
+      <p><strong class="clr-good">Console:</strong></p>
+      <pre>
+          <p>
+            ran for a long time...
+            15
+            ran for a long time...
+            15
+            ran for a long time...
+            15
+          </p>
+      </pre>
+
+      <p>
+        As you can see we ran for 3 times for the same output... Thats a
+        <span class="clr-bad">waste of performance</span> isn't it?
+      </p>
+
+      <p>
+        Why don't we
+        <span class="clr-good">save the output into a specfic place</span> say a
+        <span class="clr-good">cache</span> and everytime we call for the
+        function with the same parameter,
+        <span class="clr-good"
+          >since we can predict its answers to be the same</span
+        >
+        we no longer need to run for the long time again and agin to generate it
+        again.
+      </p>
+
+      <h6>After using memorization</h6>
+
+      <pre>
+          <code>
+            const cache = {}; // A cache object for saving the output
+
+            function addTen(num) {
+                if(num in cache) { //Check if cache.num exists (with num as the key)
+                    return cache.num;  //Return saved output.
+                }
+
+                else {
+                    console.log('ran for a long time...');
+                    cache.num = num + 10; // If cache doesn't have the input saved, we save it now.
+                    return cache.num;
+                }
+            }
+
+            addTen(5);
+            addTen(5);
+            addTen(5);
+          </code>
+      </pre>
+
+      <p><strong class="clr-good">Console:</strong></p>
+      <pre>
+          <p>
+            ran for a long time...
+            15
+            15
+            15
+          </p>
+      </pre>
+
+      <p>
+        So now the function will only be ran for
+        <span class="clr-good">one time</span> onle, after that the
+        <span class="clr-good"
+          >function will direct us to the cache to grab the output
+          directly.</span
+        >
+      </p>
+
+      <h3>Cache should not be in the global scope!</h3>
+
+      <p>
+        The cache should be saved inside of the function that uses it, this is
+        <span class="clr-good">encapsulation.</span>
+      </p>
+
+      <h6>Using closure</h6>
+
+      <pre>
+        <code>
+          function addTen() {
+
+              const cache = {};
+
+              return function(num) {
+                if(num in cache) { //Check if cache.num exists (with num as the key)
+                    return cache.num;  //Return saved output.
+                }
+  
+                else {
+                    console.log('ran for a long time...');
+                    cache.num = num + 10; // If cache doesn't have the input saved, we save it now.
+                    return cache.num;
+                }
+              }    
+          }
+
+          const addTenWithCache = addTen();
+          addTenWithCache(5);
+          addTenWithCache(5);
+          addTenWithCache(5);
+        </code>
+    </pre>
+
+      <p>
+        Closure allows us to have the cache saved as a
+        <span class="clr-good">save state</span>, and
+        <span class="clr-bad"
+          >not resetting the cache every time we call the function (if we just
+          use normal function).</span
+        >
+      </p>
+
+      <p>
+        *Reference:
+        <a
+          href="https://www.udemy.com/course/advanced-javascript-concepts/learn/lecture/13576552#overview"
+          >https://www.udemy.com/course/advanced-javascript-concepts/learn/lecture/13576552#overview</a
+        >
+      </p>
+    </main>
+  </body>
+</html>

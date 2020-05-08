@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font awesome  -->
+    <link
+      rel="stylesheet"
+      href="https:+//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+      integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="
+      crossorigin="anonymous"
+    />
+
+    <!-- iconfont -->
+    <link
+      rel="stylesheet"
+      href="//at.alicdn.com/t/font_1791755_n1rvnnmldp.css"
+    />
+
+    <!-- css -->
+    <link rel="stylesheet" href="./SCSS/mix.css" />
+
+    <title>Curring + Partial Application + Compose</title>
+  </head>
+  <body>
+    <header class="header">
+      <nav></nav>
+    </header>
+
+    <main class="main">
+      <h1 class="page-title">
+        Curring + Partial Application + Compose
+      </h1>
+      <h3 class="page-subtitle">
+        What is Curring?
+      </h3>
+      <div class="page-content">
+
+        <p>
+          <span class="clr-good">Curring</span> in javascript makes use of the higher order function and more explicitly, the <a href="#closure" class="clr-good">closure.</a>
+        </p>
+
+
+        <p>Curring transforms a function with <span class="clr-good">multiple paramenters into only 1 parameter at a time <span class="clr-bad">(one by one)</span>,</span> it allows us to split the function into different 'stages' (func(a)(b)(c)) to create <span class="clr-good">'function templates'</span> with closure, not only its <span class="clr-bad">share state feature.</span></p>
+        <p class="clr-bad">Curring expects one argument at a time.</p>
+
+
+        <pre>
+            <code>
+                //Normally we do function like this...
+                function multiplyNormal(a, b) {
+                    return a * b;
+                }
+
+                //Now we can generate function templates using Curring
+                function multiply(a) {      // a closure
+
+                    return function(b) {
+                        return a * b
+                    }
+                }
+
+                function multiplyBy5 = multiply(5); //return us a function that has a (5) forever. (template generated)
+
+                console.log(multiplyBy5(10)); // return -> 50
+            </code>
+        </pre>
+
+        <p>NOTE: The above example also follows the <a href="./fc.html" class="clr-good">functional programming</a> paradigm <span class="clr-good">immutability / no side effect</span> by not changing the elements ouside of the function itselfs.</p>
+
+
+        <h3 class="page-subtitle">
+            What is Partial Application?
+          </h3>
+          <div class="page-content">
+    
+            <p>
+              <span class="clr-good">Partial Application</span> actually very similar to <span class="clr-good">Curring</span>, it also allows us to create a <span class="clr-good">'function template'</span> which we can input some arguments into a function, but it <span class="clr-bad">does not</span> make use of <span class="clr-bad">closure</span>. But it suggests that the parameters of a normal function needed to be provided all at once in the second statement so we <span class="clr-bad">don't split</span> the function into multiple 'stages'.
+            </p>
+    
+    
+            <pre>
+                <code>
+                    //Make use of a normal function...
+                    const multiply = (a, b, c) => a * b * c;
+
+                    const partialMultiplyBy5 = multiply.bind(null, 5); // we have a null because we don't want to transfer the THIS pointer. 
+                    //This statement generates another funcion awaits to be called (partialMultiplyBy5(5, b, c));
+
+                    partialMultiplyBy5(4, 10) //return -> 200; //THE SECOND STATEMENT after generating the new function.
+                </code>
+            </pre>
+    
+            <p>See we <span class="clr-good">populate all the arguments</span> to the partialMultiplyBy5() right after we <span class="clr-good">preloaded</span> one argement to 5 from multiply.</p>
+
+        
+            <h3 class="page-subtitle">
+              What is compose?
+            </h3>
+            <div class="page-content">
+
+              <p>In functional programming, we use pure functions to make our program preditable and testable, so on and so forth.</p>
+      
+              <p>
+                <strong class="clr-good">Compose</strong> is one of the most popular technique for programmers to compose different pure functions to generate an output.
+              </p>
+
+              <p >It can be done by creating 2 different kind of closures - <strong class="clr-good">Compose and Pipe</strong></p>
+
+              <h6>Using compose</h6>
+      
+      
+              <pre>
+                  <code>
+                      //Composing 3 pure functions
+                      const compose = (func1, func2, func3) => (num) => func1(func2(func3(num)));
+
+                      const addThree = (num) => num + 3;    
+                      const multiplyBy2 = (num) => num * 2;
+                      const absNum = (num) => Math.abs(num);  // The 3 pure functions we are going to compose.
+
+                      const addMultiAbs = compose(addThree, multiplyBy2, absNum); // Define the pure functions we are going to use to addMultiAbs and waiting for calculation
+
+                      console.log(addMultiAbs(10)); // addThree(multiplyBy2(absNum(10))) return -> 23
+                  </code>
+              </pre>
+      
+              <p><span class="clr-good">Compose</span> will accepts 3 pure functions as outter arguments and the calculation in the inner function will be ran from <span class="clr-good">right to left.</span></p>
+
+
+              <h6>Using pipe</h6>
+      
+      
+              <pre>
+                  <code>
+                      //Composing 3 pure functions
+                      const pipe = (func3, func2, func1) => (num) => func1(func2(func3(num))); // Pure function arguments from left  to right
+
+                      const addThree = (num) => num + 3;    
+                      const multiplyBy2 = (num) => num * 2;
+                      const absNum = (num) => Math.abs(num);  // The 3 pure functions we are going to compose.
+
+                      const addMultiAbs = pipe(addThree, multiplyBy2, absNum); // Define the pure functions we are going to use to addMultiAbs and waiting for calculation
+
+                      console.log(addMultiAbs(10)); // addThree(multiplyBy2(absNum(10))) return -> 23
+                  </code>
+              </pre>
+      
+              <p><span class="clr-good">Pipe</span> will accepts 3 pure functions as outter arguments and the calculation in the inner function will be ran from <span class="clr-good">left to right.</span></p>
+
+              <p class="clr-good">Compose or pipe is based on the personal perference</p>
+
+              <p><Strong>Reference: </Strong><a href="https://www.udemy.com/course/advanced-javascript-concepts/learn/lecture/13829552#overview">https://www.udemy.com/course/advanced-javascript-concepts/learn/lecture/13829552#overview</a></p>
+
+              <h3 class="page-subtitle">
+              What is compose?
+            </h3>
+            <div class="page-content">
+
+              <p>In functional programming, we use pure functions to make our program preditable and testable, so on and so forth.</p>
+      
+              <p>
+                <strong class="clr-good">Compose</strong> is one of the most popular technique for programmers to compose different pure functions to generate an output.
+              </p>
+
+              <p >It can be done by creating 2 different kind of closures - <strong class="clr-good">Compose and Pipe</strong></p>
+
+              <h6>Using compose</h6>
+      
+      
+              <pre>
+                  <code>
+                      //Composing 3 pure functions
+                      const compose = (func1, func2, func3) => (num) => func1(func2(func3(num)));
+
+                      const addThree = (num) => num + 3;    
+                      const multiplyBy2 = (num) => num * 2;
+                      const absNum = (num) => Math.abs(num);  // The 3 pure functions we are going to compose.
+
+                      const addMultiAbs = compose(addThree, multiplyBy2, absNum); // Define the pure functions we are going to use to addMultiAbs and waiting for calculation
+
+                      console.log(addMultiAbs(10)); // addThree(multiplyBy2(absNum(10))) return -> 23
+                  </code>
+              </pre>
+      
+              <p><span class="clr-good">Compose</span> will accepts 3 pure functions as outter arguments and the calculation in the inner function will be ran from <span class="clr-good">left to right.</span></p>
+
+
+              <h6>Using pipe</h6>
+      
+      
+              <pre>
+                  <code>
+                      //Composing 3 pure functions
+                      const compose = (func3, func2, func1) => (num) => func1(func2(func3(num))); // Pure function arguments from left to right
+
+                      const addThree = (num) => num + 3;    
+                      const multiplyBy2 = (num) => num * 2;
+                      const absNum = (num) => Math.abs(num);  // The 3 pure functions we are going to compose.
+
+                      const addMultiAbs = compose(addThree, multiplyBy2, absNum); // Define the pure functions we are going to use to addMultiAbs and waiting for calculation
+
+                      console.log(addMultiAbs(10)); // addThree(multiplyBy2(absNum(10))) return -> 23
+                  </code>
+              </pre>
+      
+              <p><span class="clr-good">Pipe</span> will accepts 3 pure functions as outter arguments and the calculation in the inner function will be ran from <span class="clr-good">left to right.</span></p>
+
+              <p class="clr-good">Compose or pipe is based on the personal perference</p>
+
+              <p><Strong>Reference: </Strong><a href="https://www.udemy.com/course/advanced-javascript-concepts/learn/lecture/13829552#overview">https://www.udemy.com/course/advanced-javascript-concepts/learn/lecture/13829552#overview</a></p>
+
+              <h3 class="page-subtitle">
+                How to utilize functional programming to build things?
+              </h3>
+              <div class="page-content">
+  
+                <p>To demostrate this, we are going to make use of compose (of coz also closure) and create a <span class="clr-good">Compose generator</span> that allow us to <span class="clr-good">extend</span> the compose function whenever we want for extensibility.</p>
+        
+                <p>
+                  The example simulates a simple version of <span class="clr-bad">Amazon shopping cart's flow.</span>
+                </p>
+  
+                <h6>Amazon shopping cart</h6>
+        
+        
+                <pre>
+                    <code>
+                      //==========================================================
+                      //User
+                      //==========================================================
+                        const user = {
+                          name: 'Franky',
+                          actuve: true,
+                          cart: [],
+                          purchases: [],
+                        }
+
+                        //==========================================================
+                        //Compose and 'compose generator'
+                        //==========================================================
+
+                        const compose = (f, g) => (...args) => f(g(...args));         // Step 1
+
+                        function purchaseComposeGenerator(...funcs) {
+                          
+                          return funcs.reduce(compose);                                // Step 2  Note 1
+                        }
+
+                        //==========================================================
+                        //Pure functions                                               //Step 3
+                        //==========================================================
+                        const addItemToCart = (user, item) => {
+                          const updateCart = user.cart.concat(item);
+                          return Object.assign({}, user, { cart: updateCart });
+                        };
+
+                        const applyTaxToItems = (user) => {
+                          const { cart } = user;                                      // NOTE: 2
+                          const taxRate = 1.3;
+                          const updateCart = cart.map((item) => {
+                            return {
+                              name: item.name,
+                              price: item.price * taxRate,
+                            };
+                          });
+
+                          return Object.assign({}, user, { cart: updateCart });
+                        };
+
+                        const buyItem = (user) => {
+                          return Object.assign({}, user, { purchases: user.cart });
+                        };
+
+                        const clearCart = (user) => {
+                          return Object.assign({}, user, { cart: [] });
+                        };
+
+                        //==========================================================
+                        //Generate Compose based on the functions we need to return
+                        //And run the compose
+                        //Compose -> Right to Left
+                        //==========================================================
+
+                        console.log(
+                          purchaseComposeGenerator(
+                            clearCart,
+                            buyItem,
+                            applyTaxToItems,
+                            addItemToCart
+                          )(user, { name: "laptop", price: 200 })                     //Step 4
+                        );
+                    </code>
+                </pre>
+        
+                <p><strong class="clr-good">Explanation: </strong><p>
+  
+                <p><span class="clr-good">Step 1: </span>The compose is <span class="clr-bad">not just a normal closure,</span> we eliminate the parameters in the compose and more importantly, we design the compose for the 'compose generator' that with <span class="clr-good">Array.prototype.reduce() </span>for <span class="clr-good">extensibility</span></p>
+
+                
+                <p><span class="clr-good">Step 2: </span>The parameter of this 'compose generator' is in <span class="clr-good">array </span>form because we don't want to fix the amount of the functions we are going to compose. <span class="clr-good">Again, extensibility and everything is clearer.</span></p>
+                
+                <p><span class="clr-good">Step 3: </span>Pure functions are used because we are adopting functional programming and we want them to be predictable so that it is testable and not creating much bugs.</p>
+                
+                <p><span class="clr-good">Step 4: </span>The <span class="clr-good">'compose generator'</span> takes 4 pure functions as the steps being ran in the compose, and after the 'compose operation' finished (reduce()), the inner function of the compose will be ready and the 'compose generator' is <span class="clr-bad">required to populate the data for the function.</span></p>
+
+                <p><strong class="clr-bad">Notes: </strong><p>
+
+                <p><span class="clr-bad">Note 1: </span>Compose as the call back function of the reduce, it takes (accumulator and currentItem) as the parameters. The <span class="clr-good">accumulator will save the function inside ...funcs one by one and to compose the inner function.</span></p>
+                
+                <p class="clr-good">The outter function of compose is used for the design of the inner function, the inner function is used for the actual calculation.</p>
+
+                <p><span class="clr-bad">Note 2: </span>It is similar to <span class="clr-bad">user.cart</span>, but this <span class="clr-good">allows us to use the user.cart directle.</span></p>
+
+
+
+
+  
+                <p><Strong>Reference: </Strong><a href="https://www.udemy.com/course/advanced-javascript-concepts/learn/lecture/13829728#overview">https://www.udemy.com/course/advanced-javascript-concepts/learn/lecture/13829728#overview</a></p>
+    </main>
+  </body>
+</html>
