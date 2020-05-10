@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font awesome  -->
+    <link
+      rel="stylesheet"
+      href="https:+//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+      integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="
+      crossorigin="anonymous"
+    />
+
+    <!-- iconfont -->
+    <link
+      rel="stylesheet"
+      href="//at.alicdn.com/t/font_1791755_n1rvnnmldp.css"
+    />
+
+    <!-- css -->
+    <link rel="stylesheet" href="./SCSS/mix.css" />
+
+    <title>The Web</title>
+  </head>
+  <body>
+    <header class="header">
+      <nav></nav>
+    </header>
+
+    <main class="main">
+      <h1 class="page-title">
+        The Web
+      </h1>
+      <h3 class="page-subtitle">
+        What happens behind the scene when we browse a website?
+      </h3>
+      <div class="page-content">
+
+        <pre>
+            <code>
+                
+            </code>
+        </pre>
+
+
+        <h3 class="page-subtitle">
+            Why don't we using call back functions?
+          </h3>
+
+        <p>The <span class="clr-bad">disadvantage</span> of call back functions is that it can lead to something call <span class="clr-bad">'call back hell',</span> which is call backs nested in call back</p>
+
+        <h3 class="page-subtitle">
+            Using Promise
+        </h3>
+
+        <div class="important-block">
+          <p><strong class='clr-bad'>setTimeout() fetch() etc... will be placed to call back queue - Task Queue since they are a part of webApi.</strong></p>
+          <p><strong class='clr-good'>Promise is natively built inside javascript and it will be placed to a new queue, Job queue - Microtask Queue.</strong></p>
+          <p>Job queue has higher priority then the task queue (call back queue).</p>
+        </div>
+
+
+        <p>With Promise, we can avoid 'call back hell' to be happened, and the Promise basically just like the promise between humans.</p>
+        <p>Promise gets an call back function as an argument, and the call back function takes <span class="clr-good">'resolve'</span> and <span class="clr-good">'reject'</span> as the arguments, it simulates what will happen if the promise is achieved (trigger 'resolve') and failed (trigger 'reject').</p>
+        <p>After Promise, we can attach 'then()' - if succeed, 'catch()' - if fail, and 'finally()' - teardown to it.</p>
+        <h6>Normal Promise</h6>
+        
+        <pre>
+            <code>
+
+                const promise1 = new Promise((resolve, reject) => {
+                    if(true) {
+                        resolve('Success!')
+                    }
+                    else {
+                        reject('Fail!')
+                    }
+                })
+
+                promise1.then(msg => {                         // 'then' indicates what will be triggered if the promise is resolved. It takes the message we populated to resolve before.
+                    console.log(msg + '!')
+                }).catch(msg => {
+                    console.log(msg + ': This is not called!') // 'catch' indicates what will be triggered if the promise is rejected. It takes the message we populated to reject before.
+                }).finally(() => {                             // Teardown
+                    console.log('No matter what, I will be called!')
+                })
+            </code>
+        </pre>
+
+        <p><strong class="clr-good">Console:</strong></p>
+        <p>Success!!</p>
+        <p>No matter what, I will be called!</p>
+
+        <div class="important-block">
+          <p><span class="clr-good">Normal Promise</span> is used on a <span class="clr-good">single operation</span> with different steps while <span class="clr-bad">Promise.all()</span> and <span class="clr-bad">Promise.race()</span> are for different operations in the same module.</p>
+
+          <p class="clr-bad">The reject / catch() is never called in the example because we have set the condition to be always true.</p>
+      </div>
+
+
+        <h6>Promise.all (parallel)</h6>
+
+        <pre>
+            <code>
+                const urls = [                                 // Fake apis
+                "https://jsonplaceholder.typicode.com/users",
+                "https://jsonplaceholder.typicode.com/photos",
+                "https://jsonplaceholder.typicode.com/todos",
+                ];
+
+                //Since we have 3 apis here, we can use fetch() to get them one by one
+                Promise.all(urls.map(url => {
+                    return fetch(url).then(response => response.json())
+                    .then(threeResponses => {
+                        console.log(threeResponses[0]);
+                        console.log(threeResponses[1]);
+                        console.log(threeResponses[2]);
+                    })
+                }))
+
+                // Return -> 3 different object arrays. [ users, photos, todos ]
+            </code>
+        </pre>
+
+        <p>Promise.all takes an 'Promise' array as the argument, it allows us to handle multiple promises together and <span class="clr-good">they will only be returned if the promises are all finished loading.</span></p>
+
+        <p><strong class="clr-good">Explanations:</strong></p>
+        <p><span class="clr-good">1. </span>Promise.all takes an 'Promise' array as argument. We use map() to fetch and json() each of the url inside of the array. And <span class="clr-good">the map() will return a new array which becomes the arguement of Promise.all().</span></p>
+        <p><span class="clr-good">2. </span><span class="clr-bad">fetch() and json() will return promise,</span> thats why we can attach json() behind fetch().</p>
+        <p><span class="clr-good">3. </span>With Promise.all, we link everything including console.log the promise data (response) with <span class="clr-good">then(), catch(), finally(),</span> so that it will <span class="clr-good">automatically await</span> the asynchronous operation to be done before moving to the next then().</p>
+        <p><span class="clr-good">4. </span>With Async Await, we can seperate the action and we don't need to link them tightly with <span class="clr-good">then(), catch(), finally(),</span>. But we need <span class="clr-good">async on the function and await on every related asynchronous operations.</span> <span class="clr-bad">Otherwise we will process a 'pending' promise by mistake.</span></p> 
+
+
+
+
+        <h3 class="page-subtitle">
+        Three synchronous way - race, parallel, sequence
+        </h3>
+
+        <p>Promise.race() return as long as one of the promises in the array finishes.</p>
+
+        <pre>
+          <code>
+            const promisify = (item, delay) => new Promise(resolve => setTimeout(() => {
+              resolve(item);       // All promises will do one thing, add text to resolve()
+            }, delay));
+
+            const promiseOne = () => promisify('a', 100);
+            const promiseTwo = () => promisify('b', 0);
+            const promiseThree = () => promisify('c', 10000);
+
+            async function race() {   // Make use of async, make things easier and cleaner
+              const arrayOfPromises = [promiseOne(), promiseTwo(), promiseThree()]; // Promise.race() takes a promise array.
+              
+              const output = await Promise.race(arrayOfPromises);       // return the fastest resolve which should have the item 'b'
+
+              return `The race is done: ${output} is the fastest one finished!`;  // return the resolve for this race()
+            }
+
+            race().then((resolve) => console.log(resolve)); //We still use then() after race() because race() is an async function
+          </code>
+        </pre>
+
+        <p>Promise.all() to achieve <span class="clr-good">parallel</span></p>
+        <pre>
+          <code>
+            const promisify = (item, delay) => new Promise(resolve => setTimeout(() => {
+              resolve(item);    // All promises will do one thing, add text to resolve()
+            }, delay));
+
+            const promiseOne = () => promisify('a', 100);
+            const promiseTwo = () => promisify('b', 0);
+            const promiseThree = () => promisify('c', 10000);
+
+            async function parallel() {
+              const promises = [promiseOne(), promiseTwo(), promiseThree()];
+
+              const output = await Promise.all(promises); // Promise.all will return an array for the output, we can use [a, b, c] as well.
+
+              return output; // return the resolve for this parallel()
+            }
+
+            parallel().then(data => console.log(data)); //then gets the data generated by the previous statement (parallel()) = resolve array
+          </code>
+        </pre>
+
+        <p>Await to achieve <span class="clr-good">sequential, since it forces them waiting for their previous await.</span></p>
+        <pre>
+          <code>
+            const promisify = (item, delay) => new Promise(resolve => setTimeout(() => {
+              resolve(item);    // All promises will do one thing, add text to resolve()
+            }, delay));
+
+            const promiseOne = () => promisify('a', 100);
+            const promiseTwo = () => promisify('b', 0);
+            const promiseThree = () => promisify('c', 10000);
+
+            async function sequential() {
+              
+              const output1 = await promiseOne();
+              const output2 = await promiseTwo();
+              const output3 = await promiseThree();
+
+              return `sequence us done ${output1} ${output2} ${output3}`;
+            }
+
+            sequential().then(console.log); // return -> sequence us done a b c
+          </code>
+        </pre>
+
+        <h3 class="page-subtitle">
+            Using Async Await
+        </h3>
+
+        <p><span class="clr-good">Async Await</span> allows us to make things more <span class="clr-good">readable</span> and we can do more things by using them such as <span class="clr-good">assign them into variables.</span></p>
+
+        <h6>Async Await with Promise.all</h6>
+
+        <pre>
+            <code>
+                const urls = [                                 // Fake apis
+                "https://jsonplaceholder.typicode.com/users",
+                "https://jsonplaceholder.typicode.com/photos",
+                "https://jsonplaceholder.typicode.com/todos",
+                ];
+
+                const getData = async function() {            // async function
+                    const [ users, photos, todos ] = await Promise.all(urls.map(async url => {    // [ users, photos, todos ] represents the three fetched object arrays
+                        return await fetch(url).then(response => response.json());    // NOTE: await is required because we need to wait for it to be resolved.
+                    }))
+
+                    //NOW we can use the object array outside of the Promise.all()
+                    console.log('users', users);
+                    console.log('photos', photos);
+                    console.log('todos', todos);
+                }
+
+                getData();
+
+            </code>
+        </pre>
+
+        <p><span class="clr-good">Everything looks cleaner now,</span> we can even assign the returned api obejct arrays (that are being handled by the fetch() and json()) to variables.</p>
+
+        <p class="clr-bad"><strong>NOTE: </strong>After fetch() json() being used on the 3 api url, the promise type is returned and thats not what we want. We then used Promise.all() or 'await of' to transform them into the object arrays</p>
+
+        <h6>Async Await with for await of</h6>
+
+        <pre>
+          <code>
+            const urls = [                                 // Fake apis
+            "https://jsonplaceholder.typicode.com/users",
+            "https://jsonplaceholder.typicode.com/photos",
+            "https://jsonplaceholder.typicode.com/todos",
+            ];
+
+            const getData = async function() {
+              const arrayOfPromises = urls.map(async url => {   // async is required for await
+                const response = await fetch(url);  // await is used here because we want the following statement to wait for this finishes first
+                const responseJson = response.json();
+                return responseJson;
+              })
+
+              for await (promise of arrayOfPromises) {    // Just make sure we use await the promise to be committed (resolve).
+                console.log(promise);
+              }
+            }
+            
+            getData();
+          </code>
+        </pre>
+
+
+        <p class="clr-good">Always use async for await and await to force the following statement after it to wait it.</p>
+
+        <div class="img-wrapper">
+          <img class="img--two" src="./img/Asynchronous/withoutAwait.PNG" alt="">
+          <img class="img--two" src="./img/Asynchronous/withAwait.PNG" alt="">
+        </div>
+
+        <p><strong class="clr-bad">Without await: </strong>Javascript natively (not webApi for promises) promises us to do something, but we <span class="clr-bad">didn't wait it</span> to be resolved... (pending)</p>
+        <p><strong class="clr-good">With await: </strong>We wait for the Javascript natively (not webApi for promises) to resolve the it's promise and then we get the <span class="clr-good">intact API response.</span></p>
+
+        <p class="clr-bad">If we keep everything (including console.log) in the Promise.all() and we use then() to link the everything, then we don't need async await.</p>
+        
+    </main>
+  </body>
+</html>

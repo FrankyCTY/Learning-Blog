@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font awesome  -->
+    <link
+      rel="stylesheet"
+      href="https:+//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+      integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="
+      crossorigin="anonymous"
+    />
+
+    <!-- iconfont -->
+    <link
+      rel="stylesheet"
+      href="//at.alicdn.com/t/font_1791755_n1rvnnmldp.css"
+    />
+
+    <!-- css -->
+    <link rel="stylesheet" href="./SCSS/mix.css" />
+
+    <title>Module</title>
+  </head>
+  <body>
+    <header class="header">
+      <nav></nav>
+    </header>
+
+    <main class="main">
+      <h1 class="page-title">
+        Module
+      </h1>
+      <h3 class="page-subtitle">
+        Why do we need Module?
+      </h3>
+
+      <p>
+        Using module to
+        <span class="clr-good">organize our javascrip code</span> is nevessary
+        because it allows us to make the code more
+        <span class="clr-good">maintainable</span> and
+        <span class="clr-good">readable</span>.
+      </p>
+
+      <p>
+        Creating a module is creating a scope for us, just like the function
+        scope or the block scope but it is beyond these two.
+      </p>
+      <pre>
+          <p>
+              Global scope
+                Module scope            <- This is where it lives
+                    Function scope
+                        Block scope
+          </p>
+      </pre>
+
+      <div class="important-block">
+        <p><strong class="clr-bad">We want to avoid:</strong></p>
+      </div>
+      <p>
+        <span class="clr-bad">Declaring variables in the</span>
+        <span class="clr-good">global object.</span>
+      </p>
+      <p>- Possible memory leaks, we have limited memories.</p>
+      <p>
+        - Polluting name spaces, our
+        <span class="clr-good">name spaces is unique</span> under the
+        <span class="clr-bad">same scope,</span> we might redefine the data
+        accidentally.
+      </p>
+      <p>
+        - Enabled<span class="clr-bad"> share state / mutability,</span> which
+        causes <span class="clr-good">tightly coupling,</span> this relationship
+        allows our code to modify the same piece of data which can lead to a lot
+        of bugs.
+      </p>
+
+      <div class="important-block--good">
+        <p><strong class="clr-good">We want to have:</strong></p>
+      </div>
+      <p>
+        <span class="clr-good">Encapsulation.</span>
+        <span class="clr-bad">
+          Just expose the data we actually want to be shared.</span
+        >
+      </p>
+      <p>- Minimize possible memory leaks opportunities.</p>
+      <p>- Minimize tight coupling.</p>
+      <p>- Minimize bugs</p>
+      <p>- Added matainability and readability</p>
+
+      <h3 class="page-subtitle">
+        How to create Module?
+      </h3>
+
+      <p>There are few ways to create module...</p>
+
+      <h6>Old way with IIFE (Immediate Involve Function)</h6>
+
+      <p class="clr-good">
+        We wrap the javascript file using IIFE (immediately invoking the script
+        inside of the IIFE), and only expose what others need in the return
+        public api.
+      </p>
+      <p>
+        This way of creating module is adopted by
+        <span class="clr-good">jquery</span>
+      </p>
+
+      <pre>
+        <code>
+            const globalVariableName = 'Venus'; // Global Variable
+
+            const newModule = (function() {
+                const name = 'Franky';
+                const age = 24;
+
+                function intro(name, age) {
+                    console.log(`My name is ${name, I am ${age} years old!});
+                }
+
+                return {                        // Public API (return an object)
+                    intro: intro
+                }
+            })(globalVariableName);             // No side effect since we past the global variable to the module using parameter
+        </code>
+      </pre>
+
+      <div class="important-block--good">
+        <p>
+          - We <span class="clr-good">encapsulate</span> the data and behaviours
+          into the <span class="clr-good">module scope.</span>
+        </p>
+        <p>
+          - Choose the data / behaviours that can be used by other modules and
+          put them into the <span class="clr-good">public api object.</span>
+        </p>
+
+        <p>
+          - This module <span class="clr-good">IIFE</span> can take parameters,
+          so that we can use data outside of the module scope without modiing
+          them.
+          <span class="clr-good">(value type)</span>
+        </p>
+
+        <p>- Name spaces are no longer polluted.</p>
+      </div>
+
+      <p><strong class="clr-bad">Cons:</strong></p>
+      <p>
+        Name space is actually still polluted due to the
+        <span class="clr-bad">module name</span> itselfs.
+      </p>
+
+      <p>
+        <span class="clr-bad">Scripts priorities</span> should be placed in the
+        right order.
+      </p>
+
+      <h3 class="page-subtitle">
+        CommonJS
+      </h3>
+
+      <p>
+        CommonJS is very popular because of it's easy syntax and it is
+        <span class="clr-good">widely used in the npm</span> for people to share
+        their module.
+      </p>
+
+      <p>
+        <span class="clr-bad">But it is sychronous,</span> so that if one module
+        takes a long time to load, our website can get stuck.
+      </p>
+
+      <pre>
+          <code>
+            // In circle.js
+            const PI = Math.PI;
+
+            exports.area = r => PI * r * r;
+
+            exports.circumference = (r) => 2 * PI * r;
+
+            // In some file
+            const circle = require('./circle.js');              // Import circls.js
+            console.log(`The area of a circle of radius 4 is ${circle.area(4)}`);
+          </code>
+      </pre>
+
+      <h6>Used with Module Bundler to solve synchronous problem</h6>
+
+      <pre>
+          <p>
+              app.js -->  |                 |
+              users.js -> |     Bundler     |       -> bundle.js
+              dom.js -->  |                 |
+          </p>
+      </pre>
+
+      <p>
+        We can use Module Bundler such as
+        <span class="clr-good">browserify</span> to create a single bundle.js
+        from different modules.
+      </p>
+
+      <p class="clr-good">
+        We can use the common js regardless of the order of the modules now.
+      </p>
+
+      <h3 class="page-subtitle">
+        ES6 Modules
+      </h3>
+
+      <p>
+        We finally can use the <span class="clr-good">native Modules.</span> It
+        also solves the <span class="clr-bad">namespace pollutions</span> and
+        <span class="clr-bad">dependency solution.</span>
+      </p>
+
+      <pre>
+          <code>
+              //in index.html
+              script type="module" src="./js/app.js" defer>script
+
+              // in module1.js
+              export { moduleVariable, moduleFunc };
+
+              const moduleVariable = 'I am a variable in module1.js';
+
+              function moduleFunc() {
+                  //...
+              }
+
+              // in app.js
+              import { * } as module01 from './module1.js';
+
+          </code>
+      </pre>
+
+      <p class="clr-good">Now we can seperate concerns.</p>
+    </main>
+  </body>
+</html>
