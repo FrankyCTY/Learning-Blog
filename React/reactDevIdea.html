@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font awesome  -->
+    <link
+      rel="stylesheet"
+      href="https:+//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+      integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="
+      crossorigin="anonymous"
+    />
+
+    <!-- iconfont -->
+    <link
+      rel="stylesheet"
+      href="//at.alicdn.com/t/font_1791755_n1rvnnmldp.css"
+    />
+
+    <!-- css -->
+    <link rel="stylesheet" href="../SCSS/mix.css" />
+
+    <title>React Development Idea</title>
+  </head>
+  <body>
+    <header class="header">
+      <nav></nav>
+    </header>
+
+    <main class="main">
+      <h1 class="page-title">
+        React Development Idea
+      </h1>
+
+      <h3 class="page-subtitle">
+        The idea behind React
+      </h3>
+
+      <div class="page-content">
+        <p>
+          React mixes the wonderful things of
+          <span class="clr-good">OOP and FP</span> and before we start
+          discussing about that, lets take a look on the
+          <span class="clr-good">mindset</span> to start developing the react
+          project.
+        </p>
+      </div>
+
+      <ul>
+        <li>One way data flow</li>
+        <li>Component based development</li>
+        <li>State driven development</li>
+        <li>Life Cycle Hooks</li>
+      </ul>
+
+      <p>
+        As we can see, we have 4 main points of the mindset, and they are
+        actually relating with each other.
+      </p>
+
+      <p class="clr-good"><strong>1. One way data flow</strong></p>
+
+      <img src="../img/React/one way data flow.PNG" alt="" />
+
+      <p>
+        One way data flow indicates that in react, the influence of components
+        are from <span class="clr-good">top to bottom</span>. It means that
+        <span class="clr-good"
+          >only the children of the parent component will notice the
+          changes.</span
+        >
+        Which is cool.
+      </p>
+
+      <p class="clr-good"><strong>2. Component based development</strong></p>
+      <img src="../img/React/thinkInComponents.PNG" alt="" />
+      <p>
+        As we have talked about in the intro page, react depends on components.
+        We use components to build up molecules then organisms, and then
+        templates and pages.
+      </p>
+
+      <p>
+        - It makes everything becomes
+        <span class="clr-good">scalable, managable and reusable.</span>
+      </p>
+
+      <p>
+        - Components are often written in
+        <strong class="clr-good">pure function</strong>. So that the code will
+        become <span class="clr-good">predictable</span> as well.
+      </p>
+
+      <p class="clr-bad">
+        Components (Atoms) -> Molecules -> Organisms -> Templates -> Pages
+      </p>
+
+      <p class="clr-good"><strong>3. State driven development</strong></p>
+      <img class="img--two" src="../img/React/class01.PNG" alt="" />
+      <img class="img--two" src="../img/React/class02.PNG" alt="" />
+
+      <p>
+        The <strong class="clr-good">state</strong> obj is stored in a class
+        (not a component), and
+        <span class="clr-good">by manipulating the state,</span>
+        <span class="clr-bad"
+          >we change the input of the components (pure function) and generate
+          different result.</span
+        >
+      </p>
+
+      <p class="clr-good"><strong>3. Life Cycle Hooks</strong></p>
+      <img src="../img/React/React lifecycle hooks.PNG" alt="" />
+      <p>
+        React provides a way for us to manage and play with state. And according
+        to the life cycle stage we are at,
+        <span class="clr-good"
+          >we can trigger different operations to manipulate the state.</span
+        >
+      </p>
+    </main>
+  </body>
+</html>

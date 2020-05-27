@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font awesome  -->
+    <link
+      rel="stylesheet"
+      href="https:+//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+      integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="
+      crossorigin="anonymous"
+    />
+
+    <!-- iconfont -->
+    <link
+      rel="stylesheet"
+      href="//at.alicdn.com/t/font_1791755_n1rvnnmldp.css"
+    />
+
+    <!-- css -->
+    <link rel="stylesheet" href="../SCSS/mix.css" />
+
+    <title>React Syntax</title>
+  </head>
+  <body>
+    <header class="header">
+      <nav></nav>
+    </header>
+
+    <main class="main">
+      <h1 class="page-title">
+        React Syntax
+      </h1>
+
+      <p class="clr-good" style="text-align: center;">
+        In this page, I mark down the syntax or things that I want to memorize
+        better.
+      </p>
+
+      <div class="important-block--good">
+        <p class="clr-good"><strong>Props object</strong></p>
+        <p>
+          Props object
+          <span class="clr-good"
+            >allows us to pass data to the component (pure function)</span
+          >
+          similar to a regular function's argument.
+        </p>
+      </div>
+
+      <img
+        class="img--two"
+        style="margin-top: 2em; width: 30%;"
+        src="../img/React/syntax/props.PNG"
+        alt=""
+      />
+      <img class="img--two" src="../img/React/syntax/props obj.PNG" alt="" />
+
+      <p class="clr-good">
+        Props is just an object, as everything in javascript are objects.
+      </p>
+
+      <p>
+        We can see that we have passed <span class="clr-bad">testProps</span> to
+        the component, and we can call it by using
+        <span class="clr-good">'props.testProps'.</span> If we use
+        <span class="clr-good">deconstructor {testProps}</span>, we can directly
+        use {testProps} in the JSX.
+      </p>
+
+      <div class="important-block--good">
+        <p class="clr-good"><strong>Props children</strong></p>
+        <p>
+          As you can see on the above and the image on the right,
+          <span class="clr-bad"
+            >the props object has a property called 'children'.</span
+          >
+        </p>
+
+        <p>
+          It allows us to
+          <span class="clr-good"
+            >access the children component that is wrapped by the current
+            component.</span
+          >
+        </p>
+      </div>
+      <img
+        class="img--two"
+        style="margin-top: 2em; width: 30%;"
+        src="../img/React/syntax/props.PNG"
+        alt=""
+      />
+      <img
+        class="img--two"
+        src="../img/React/syntax/props children.PNG"
+        alt=""
+      />
+      <p>
+        The
+        <span class="clr-good">current component (Scroll)</span>
+        <span class="clr-bad">wraps</span> a
+        <span class="clr-good">child component (CardList).</span>
+      </p>
+      <p>
+        So now in the <span class="clr-good">Scroll component page,</span> we
+        can
+        <span class="clr-bad"
+          >describe that the CardList (props.children) is wrapped by a div with
+          scroll feature.</span
+        >
+        (image on the left)
+      </p>
+    </main>
+  </body>
+</html>
