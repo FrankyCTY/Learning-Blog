@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font awesome  -->
+    <link
+      rel="stylesheet"
+      href="https:+//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+      integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="
+      crossorigin="anonymous"
+    />
+
+    <!-- iconfont -->
+    <link
+      rel="stylesheet"
+      href="//at.alicdn.com/t/font_1791755_n1rvnnmldp.css"
+    />
+
+    <!-- css -->
+    <link rel="stylesheet" href="../SCSS/mix.css" />
+
+    <title>React</title>
+  </head>
+  <body>
+    <header class="header">
+      <nav></nav>
+    </header>
+
+    <main class="main">
+      <h1 class="page-title">
+        React
+      </h1>
+
+      <h3 class="page-subtitle">
+        What is react?
+      </h3>
+
+      <div class="page-content">
+        <p>
+          React is a very strong javascript library created by
+          <span class="clr-good">Facebook</span> to solves the problems that
+          they had in the past building
+          <span class="clr-bad">large project.</span>
+        </p>
+      </div>
+
+      <h3 class="page-subtitle">Why do we need React?</h3>
+      <p>
+        Before we had react, we manipulate the
+        <span class="clr-good">DOM</span> by using querySelector, getElementById
+        and addEventListener or we might also use
+        <span class="clr-bad">jquery</span> to help us to write code.
+      </p>
+
+      <p class="clr-bad">
+        However, if the project gets more complex, the problems come up.
+      </p>
+
+      <ul>
+        <li>Inconsistency</li>
+        <li>Hard to scale</li>
+        <li>Hard to manage</li>
+        <li>unreusable</li>
+        <li>Slow development</li>
+      </ul>
+
+      <h3 class="page-subtitle">React solves the problems!</h3>
+      <div class="important-block--good">
+        <p class="clr-good">
+          Using react is like we are throwing the ingredients (components) and
+          it does all the magic underneath the hood to push up the website.
+        </p>
+
+        <p>
+          React has <span class="clr-good">View</span> to make the DOM changes
+          in a <span class="clr-good">predictable</span> way in order to be
+          <span class="clr-good">scalable</span> and
+          <span class="clr-good">managable</span>.
+        </p>
+
+        <p>
+          React also has <span class="clr-good">React Bot</span> and
+          <span class="clr-good">Virtual DOM</span> which we only need to
+          describe things in to the virtual dom (render() in JSX) and the
+          <span class="clr-bad"
+            >react bot will optimise the code and apply it to the actual DOM for
+            us.</span
+          >
+        </p>
+      </div>
+
+      <p><strong class="clr-good">Think In Components</strong></p>
+      <img src="../img/React/thinkInComponents.PNG" alt="" />
+      <p>
+        1. We first
+        <span class="clr-good">create a javascript file for a component</span>
+        that you want to add into the ReactDOM.
+      </p>
+
+      <p>
+        2. Then <span class="clr-good">import React.Component</span> using
+        Javascript ES6 Module.
+      </p>
+      <p>
+        3. After that, we can build a class for the component and specify how do
+        you want to render using the <span class="clr-good">render().</span>
+      </p>
+      <p class="clr-good">
+        We use JSX, a syntax that looks alike HTML to describe what do we try to
+        render.
+      </p>
+      <img src="../img/React/componentJs.PNG" alt="" />
+      <p class="clr-bad">
+        We can import a css file specifically for the component js
+      </p>
+      <img src="../img/React/ComponentCss.PNG" alt="" />
+      <p>
+        4. After creating the component,
+        <span class="clr-good">we can now use it everywhere (reusable).</span>
+        <span class="clr-bad"
+          >We can put it into the index.js to the ReactDOM using the self
+          closing tag.</span
+        >
+      </p>
+
+      <img src="../img/React/reactDom.PNG" alt="" />
+    </main>
+  </body>
+</html>

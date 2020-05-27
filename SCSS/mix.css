@@ -28,6 +28,11 @@ a {
   color: blue;
 }
 
+ul {
+  padding: 2rem;
+  color: steelblue;
+}
+
 .clr-good {
   color: limegreen;
 }
