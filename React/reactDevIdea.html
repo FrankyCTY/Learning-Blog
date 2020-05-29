@@ -30,8 +30,16 @@
     <title>React Development Idea</title>
   </head>
   <body>
+    <div class="menu">
+      <span>menu</span>
+    </div>
     <header class="header">
-      <nav></nav>
+      <nav>
+        <ul class="nav-list">
+          <li><a href="../tableOfContent.html">Javascript</a></li>
+          <li><a href="../tableReact.html">React</a></li>
+        </ul>
+      </nav>
     </header>
 
     <main class="main">
@@ -54,6 +62,7 @@
       </div>
 
       <ul>
+        <li>Declarative</li>
         <li>One way data flow</li>
         <li>Component based development</li>
         <li>State driven development</li>
@@ -61,11 +70,57 @@
       </ul>
 
       <p>
-        As we can see, we have 4 main points of the mindset, and they are
+        As we can see, we have 5 main points of the mindset, and they are
         actually relating with each other.
       </p>
 
-      <p class="clr-good"><strong>1. One way data flow</strong></p>
+      <p class="clr-good subtitle"><strong>1. Declarative</strong></p>
+
+      <img
+        class="img--two"
+        style="width: 25%;"
+        src="../img/React/imperative.PNG"
+        alt=""
+      />
+      <img
+        class="img--two"
+        style="width: 30%;"
+        src="../img/React/declarative.PNG"
+        alt=""
+      />
+
+      <p>
+        - With <span class="clr-bad">imperative,</span> we used to
+        <span class="clr-bad"
+          >manipulate the DOM by telling the DOM what to do directly,</span
+        >
+        it makes the <span class="clr-bad">data flows</span>,
+        <span class="clr-bad">unpredictable</span> and
+        <span class="clr-bad">hard to manage</span>.
+      </p>
+
+      <p>
+        Also changing the DOM forces the DOM to do multiple things, it causes
+        <span class="clr-bad">performance problems.</span>
+      </p>
+
+      <p>
+        - With <span class="clr-good">declarative,</span> we only need to
+        <span class="clr-good">describe what the page should look like</span> by
+        modifying the
+        <a href="#stateSection" class="internalLink"
+          ><span class="clr-good">state</span></a
+        >
+        without touching the DOM.
+      </p>
+
+      <p>
+        Based on the state (blueprint) we provide, the
+        <span class="clr-good">react bot</span> will
+        <span class="clr-good">handle the changes.</span>
+      </p>
+
+      <p class="clr-good subtitle"><strong>2. One way data flow</strong></p>
 
       <img src="../img/React/one way data flow.PNG" alt="" />
 
@@ -79,8 +134,20 @@
         Which is cool.
       </p>
 
-      <p class="clr-good"><strong>2. Component based development</strong></p>
-      <img src="../img/React/thinkInComponents.PNG" alt="" />
+      <p class="clr-good subtitle">
+        <strong>3. Component based development</strong>
+      </p>
+      <img
+        style="display: block;"
+        src="../img/React/thinkInComponents.PNG"
+        alt=""
+      />
+      <p
+        class="clr-good"
+        style="border: 1px solid; display: inline-block; padding: 0.5em;"
+      >
+        <strong>Building website like lego blocks</strong>
+      </p>
       <p>
         As we have talked about in the intro page, react depends on components.
         We use components to build up molecules then organisms, and then
@@ -102,7 +169,9 @@
         Components (Atoms) -> Molecules -> Organisms -> Templates -> Pages
       </p>
 
-      <p class="clr-good"><strong>3. State driven development</strong></p>
+      <p class="clr-good subtitle" id="stateSection">
+        <strong>4. State driven development</strong>
+      </p>
       <img class="img--two" src="../img/React/class01.PNG" alt="" />
       <img class="img--two" src="../img/React/class02.PNG" alt="" />
 
@@ -116,7 +185,7 @@
         >
       </p>
 
-      <p class="clr-good"><strong>3. Life Cycle Hooks</strong></p>
+      <p class="clr-good subtitle"><strong>5. Life Cycle Hooks</strong></p>
       <img src="../img/React/React lifecycle hooks.PNG" alt="" />
       <p>
         React provides a way for us to manage and play with state. And according
@@ -125,6 +194,26 @@
           >we can trigger different operations to manipulate the state.</span
         >
       </p>
+
+      <h3 class="page-subtitle">
+        Conclusion - React Work Flow
+      </h3>
+      <p>
+        Combining the above 5 ideas, we can now visualize the
+        <span class="clr-good">Declarative React Work Flow.</span>
+      </p>
+      <img src="../img/React/ReactWorkFlow.PNG" alt="" />
+
+      <p>
+        <span class="clr-bad"> 1. State of the application + Components =</span>
+        <span class="clr-good">Virtual DOM</span>
+      </p>
+
+      <p>
+        2. React bot manipulates the DOM
+        <span class="clr-good">according to the Virtual DOM.</span>
+      </p>
     </main>
+    <script src="./app.js"></script>
   </body>
 </html>

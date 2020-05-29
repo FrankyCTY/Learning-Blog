@@ -33,6 +33,14 @@ a {
   color: blue;
 }
 
+.internalLink {
+  text-decoration: none;
+
+  &:hover {
+    background: yellow;
+  }
+}
+
 ul {
   padding: 2rem;
   color: steelblue;
@@ -48,15 +56,21 @@ ul {
 
 img {
   width: 60%;
+  -o-object-fit: cover;
   object-fit: cover;
 }
 
 .img--two {
   width: 45%;
+  -o-object-fit: cover;
   object-fit: cover;
 }
 
 .question {
+  margin-top: 4em;
+}
+
+.subtitle {
   margin-top: 4em;
 }
 
@@ -83,9 +97,124 @@ img {
   margin: 0 auto;
 }
 
+.menu {
+  --size: 5em;
+  position: fixed;
+  right: 5%;
+  top: 5%;
+  background: white;
+  // box-shadow: 2px 2px 1em 0 rgba($color: #000000, $alpha: 0.6),
+  //   -2px -2px 1em rgba($color: #fff, $alpha: 1);
+  box-shadow: 1px 1px 2px 0, -1px -1px 2px 0, 1px -1px 2px 0, -1px 1px 1em 0;
+  height: var(--size);
+  width: var(--size);
+  border-radius: 100%;
+  display: grid;
+  place-items: center;
+
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  &:hover {
+    animation: rotate 1.5s linear infinite;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// ==============================
+// header
+// ==============================
+
+.header {
+  --width: 200px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  transform: translateX(-100%);
+  width: var(--width);
+  font-size: calc(var(--width) * 0.1);
+  background: rgba($color: #f16fd7, $alpha: 0.7);
+
+  transition: transform 250ms ease-in-out;
+}
+
+.header.opened {
+  transform: translateX(0);
+}
+
+nav {
+  height: 100%;
+  width: 100%;
+  border: 2px solid black;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-list {
+  padding: 0;
+  margin: 0;
+  padding: 1em;
+  padding-top: 2em;
+  // border: 2px solid black;
+  width: 80%;
+  color: white;
+  list-style: none;
+
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+
+  li {
+    margin-bottom: 1em;
+    cursor: pointer;
+
+    & a {
+      color: white;
+      text-decoration: none;
+      &:hover {
+        color: black;
+      }
+    }
+  }
+}
+
 // ==============================
 // Main
 // ==============================
 .page-title {
   text-align: center;
+}
+
+.tableOfContent {
+  display: grid;
+  justify-items: left;
+  padding-top: 5em;
+  padding-left: 20%;
+  align-items: center;
+
+  height: 100vh;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-auto-rows: 60px;
+
+  a {
+    color: black;
+    cursor: pointer;
+    text-decoration: none;
+    &:hover {
+      color: steelblue;
+    }
+  }
 }

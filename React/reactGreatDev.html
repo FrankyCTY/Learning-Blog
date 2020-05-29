@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font awesome  -->
+    <link
+      rel="stylesheet"
+      href="https:+//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+      integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="
+      crossorigin="anonymous"
+    />
+
+    <!-- iconfont -->
+    <link
+      rel="stylesheet"
+      href="//at.alicdn.com/t/font_1791755_n1rvnnmldp.css"
+    />
+
+    <!-- css -->
+    <link rel="stylesheet" href="../SCSS/mix.css" />
+
+    <title>Great React Developer</title>
+  </head>
+  <body>
+        <div class="menu">
+          <span>menu</span>
+        </div>
+    <header class="header">
+      <nav>        <ul class="nav-list">
+        <li><a href="../tableOfContent.html">Javascript</a></li>
+        <li><a href="../tableReact.html">React</a></li>
+      </ul></nav>
+    </header>
+
+
+    <main class="main">
+      <h1 class="page-title">
+        Great React Developer
+      </h1>
+
+      <h3 class="page-subtitle">
+        How to be a great React Developer?
+      </h3>
+
+      <p>To be a great React Developer, we need to good at 3 things.</p>
+
+      <ul>
+        <li>Where to put state?</li>
+        <li>How to define a component?</li>
+        <li>What changes due to a specific state changes?</li>
+      </ul>
+
+      <p><strong class="clr-good">1. Where to put state?</strong></p>
+
+      <img
+        src="../img/React/great dev/stateLocation.PNG"
+        alt="Where to put state"
+      />
+
+      <p>
+        Remember react adopts the
+        <span class="clr-good">one way data flow</span> which makes the code
+        more
+        <span class="clr-good">predictable and easier to be debugged.</span>
+      </p>
+
+      <div class="important-block--good">
+        <p>
+          In react, we can <span class="clr-good">pass state</span> to the
+          children components as the <span class="clr-good">props,</span> and
+          the children components can
+          <span class="clr-good">react to the state changes.</span>
+        </p>
+        <p class="clr-bad">OR</p>
+        <p>
+          We can
+          <span class="clr-good">trigger changes to the state</span> to
+          <span class="clr-good">re render</span> the application by clicking on
+          a log in button.
+        </p>
+      </div>
+      <p>
+        <strong
+          >So we need to put the state on a
+          <span class="clr-good"
+            >position that can cover the components that it will
+            implicate,</span
+          >
+          but
+          <span class="clr-bad"
+            >not too far away to cover unrelated components</span
+          >
+          for <span class="clr-good">better organization.</span></strong
+        >
+      </p>
+
+      <p style="margin-top: 2em;">
+        <strong class="clr-good""
+          >2. How to define a component?</strong
+        >
+      </p>
+
+      <img class="img--two" src="../img/React/great dev/component.PNG" alt="">
+      <div class="important-block--good">
+      <p>In this example, we build a component for <span class="clr-good">"cardList"</span> and it will <span class="clr-good">return a list of card components.</span></p>
+      <p class="clr-bad">Why do we build a component for card list?</p>
+      <p>For <span class="clr-good">reusability,</span> <strong style="color:steelblue">we can create another list whenever we want by changing the props that passed into this component.</strong></p>
+    </div>
+
+    <p style="margin-top: 2em;">
+      <strong class="clr-good""
+        >3. What changes due to a specific state changes?</strong
+      >
+    </p>
+
+    <p class="clr-good">Understand what the state is about, and what components it will relate to.</p>
+    </main>
+    <script src="./app.js"></script>
+  </body>
+</html>

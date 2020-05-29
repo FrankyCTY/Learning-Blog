@@ -30,8 +30,16 @@
     <title>React</title>
   </head>
   <body>
+    <div class="menu">
+      <span>menu</span>
+    </div>
     <header class="header">
-      <nav></nav>
+      <nav>
+        <ul class="nav-list">
+          <li><a href="../tableOfContent.html">Javascript</a></li>
+          <li><a href="../tableReact.html">React</a></li>
+        </ul>
+      </nav>
     </header>
 
     <main class="main">
@@ -51,6 +59,51 @@
           <span class="clr-bad">large project.</span>
         </p>
       </div>
+
+      <h3 class="page-subtitle">Before React</h3>
+
+      <p>
+        Before we had React, in the 90s, we only have Html, css, and Javascript
+      </p>
+
+      <p><span class="clr-good">1. Jquery</span> came up</p>
+
+      <p class="clr-bad">
+        Jquery = Easier to interact with the DOM + Unified syntax across
+        different browsers (compatibility)
+      </p>
+
+      <p>
+        <span class="clr-good">2. Backbone js</span> came up due to the websites
+        getting bigger and harder to organise the javascript files
+      </p>
+
+      <p>
+        Then it was easier for us to manipulate the DOM, so
+        <span class="clr-good">single page application</span> born.
+        <span class="clr-good">More focus on Javascript, less on HTML</span>
+        <span class="clr-bad">(Javascript change the HTML)</span>
+      </p>
+
+      <p>
+        <span class="clr-good">3. Angular js </span> came up in
+        <span class="clr-good">2010</span> allows people to better organise the
+        javascript files.
+      </p>
+
+      <p>
+        But the things getting more complex, more interactive things are built
+        on the website...
+        <span class="clr-bad">Clicking one place, will trigger event... </span>
+        <span class="clr-good">DATA FLOWS EVERYWHERE</span>
+      </p>
+
+      <p>
+        <span class="clr-good">4. React </span> came up in
+        <span class="clr-good">2013</span> to solve problems, it brought us a
+        lots of new development theories.
+        <span class="clr-good">Imperative -> Declarative </span>
+      </p>
 
       <h3 class="page-subtitle">Why do we need React?</h3>
       <p>
@@ -133,5 +186,6 @@
 
       <img src="../img/React/reactDom.PNG" alt="" />
     </main>
+    <script src="./app.js"></script>
   </body>
 </html>

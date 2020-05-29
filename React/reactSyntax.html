@@ -31,7 +31,15 @@
   </head>
   <body>
     <header class="header">
-      <nav></nav>
+      <div class="menu">
+        <span>menu</span>
+      </div>
+      <nav>
+        <ul class="nav-list">
+          <li><a href="../tableOfContent.html">Javascript</a></li>
+          <li><a href="../tableReact.html">React</a></li>
+        </ul>
+      </nav>
     </header>
 
     <main class="main">
@@ -118,6 +126,85 @@
         >
         (image on the left)
       </p>
+
+      <div class="important-block--good" style="margin-bottom: 2em;">
+        <p class="clr-good"><strong>Asynchronous setState</strong></p>
+        <p>
+          The setState() method is
+          <span class="clr-good">asynchronous,</span> and
+          <span class="clr-good"
+            >react might group different setState calls together as a single
+            update.</span
+          >
+        </p>
+      </div>
+      <img
+        class="img--two"
+        src="../img/React/syntax/asynchronous setState 02.PNG"
+        alt=""
+      />
+      <img
+        class="img--two"
+        src="../img/React/syntax/asynchronous setState.PNG"
+        alt=""
+      />
+
+      <p>
+        <span style="color: steelblue;">Left img: </span>The console log is
+        after the asynchronous setState(), so it will be ran before the
+        'meaningOfLife' state modified.
+      </p>
+
+      <p>
+        <span style="color: steelblue;">Right img: </span>setState() actually
+        accepts a <span class="clr-bad">call back function</span> as the second
+        argument, but
+        <span class="clr-bad"
+          >it is considered as a bad practice to use setState() method to modify
+          the state's property.</span
+        >
+      </p>
+
+      <p class="clr-good">
+        <strong>
+          WHY?
+        </strong>
+      </p>
+
+      <p>
+        Because since
+        <span class="clr-bad"
+          >react might group different setState calls together as a single
+          update.</span
+        >
+        It can lead to unexpected result as the state's property can be
+        <span class="clr-good">shared by other setState call.</span>
+      </p>
+
+      <div class="important-block--good" style="margin-bottom: 2em;">
+        <p class="clr-good"><strong>prevState</strong></p>
+        <p>
+          In the <span class="clr-good">asynchronous setState part,</span> we
+          have talked about the
+          <span class="clr-bad"
+            >problem of changing state's property using object as an argument in
+            the setState() method.</span
+          >
+          But we haven't talk about how to solve it.
+        </p>
+      </div>
+      <img src="../img/React/syntax/prevState.PNG" alt="" />
+      <p>
+        The <span class="clr-good">first argument</span> of the setState()
+        method actually accept a <span class="clr-good">function,</span> and
+        this function <span class="clr-good">receives two arguments:</span>
+        <span style="color: steelblue;">prevState and prevProps.</span> 100By
+        playing with the prevState,
+        <span class="clr-good"
+          >we can prevent the share state gets messed up.</span
+        >
+      </p>
     </main>
+    <script src="./app.js"></script>
   </body>
 </html>
