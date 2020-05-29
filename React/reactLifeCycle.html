@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font awesome  -->
+    <link
+      rel="stylesheet"
+      href="https:+//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+      integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="
+      crossorigin="anonymous"
+    />
+
+    <!-- iconfont -->
+    <link
+      rel="stylesheet"
+      href="//at.alicdn.com/t/font_1791755_n1rvnnmldp.css"
+    />
+
+    <!-- css -->
+    <link rel="stylesheet" href="../SCSS/mix.css" />
+
+    <title>React lifecycles</title>
+  </head>
+  <body>
+    <div class="menu">
+      <span>menu</span>
+    </div>
+    <header class="header">
+      <nav>
+        <ul class="nav-list">
+          <li><a href="../tableOfContent.html">Javascript</a></li>
+          <li><a href="../tableReact.html">React</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main">
+      <h1 class="page-title">
+        React lifecycles
+      </h1>
+
+      <div class="intro-img">
+        <img src="../img/React/life cycle/life cycle.PNG" alt="" />
+        <a href="https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/"
+          >React life cycle model</a
+        >
+      </div>
+
+      <h3 class="page-subtitle">
+        Mounting work flow
+      </h3>
+
+      <p>
+        1. The <span class="clr-good">constructor</span> of the class component
+        runs first
+      </p>
+      <p>
+        2.
+        <span class="clr-good"
+          ><span class="clr-bad">First </span>render() method is trigger,</span
+        >
+        then the <span class="clr-bad">react bot knows </span> what the
+        <span class="clr-good">state of the application</span> and the
+        <span class="clr-good">components</span> are.
+      </p>
+      <p class="clr-bad">
+        Component gets mounted to the DOM bases on the state
+      </p>
+      <p>
+        3. <span class="clr-good">componentDidMount() method is called</span> so
+        that we can do things like
+        <span class="clr-good">fetching api to change the state.</span>
+        <span class="clr-bad"
+          >(Changing the state will trigger another render() method)</span
+        >
+      </p>
+
+      <h4>NOTE:</h4>
+      <p>
+        React has the <span style="color: steelblue;">First </span
+        ><span class="clr-good">Render() method</span> gets called before the
+        <span class="clr-good">componentDidMount()</span>, because we do not
+        know <span class="clr-bad">how long</span> does the operation in
+        componentDidMount() take (etc. fetching api), and we want at
+        <span class="clr-good">least some base components</span> (etc. blank
+        array) will be rendered first for UI experience.
+      </p>
+
+      <h3 class="page-subtitle">
+        Update work flow
+      </h3>
+
+      <p class="clr-good">
+        Props changes | setState() called | forceUpdate() called
+      </p>
+      <p>The above events can lead to a update work flow.</p>
+      <p>1. React senses the changes of props or setState() called</p>
+      <p>
+        2. React <span class="clr-good">re render</span> the child components
+        within this parent component,
+        <span class="clr-bad"
+          >even the components are not affected by the state changes.</span
+        >
+      </p>
+      <p class="clr-bad">So it provides performance issues...</p>
+      <div class="important-block--good">
+        <p style="color: steelblue;">
+          <span class="clr-good">USE </span>shouldComponentUpdate(nextProps,
+          nextState)
+        </p>
+        <p>
+          This method allows us to add a condition to judge if we should re
+          render a specific component.
+        </p>
+        <img src="../img/React/life cycle/shouldComponentUpdate.PNG" alt="" />
+        <p>
+          Condition:
+          <span class="clr-bad"
+            >return nextProps.text !== this.props.text
+          </span>
+          <span style="color: steelblue;"
+            >(This finds out if the new Props is different from current
+            Props.)</span
+          >
+        </p>
+
+        <p>
+          Result: <span class="clr-bad">return true or false. </span>
+          <span style="color: steelblue;"
+            >Should we re render and run following methods like
+            componentDidUpdate() for component.</span
+          >
+        </p>
+      </div>
+
+      <h3 class="page-subtitle">
+        Unmounting work flow
+      </h3>
+
+      <p>
+        <span class="clr-good">componentWillUnmount() method</span> will be
+        called before we stop mounting a componet,
+        <span class="clr-bad"
+          >in case we need to remove anything before we actually unmounting the
+          componet .</span
+        >
+      </p>
+    </main>
+    <script src="../app.js"></script>
+  </body>
+</html>

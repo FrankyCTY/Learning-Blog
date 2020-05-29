@@ -149,6 +149,7 @@ img {
   background: rgba($color: #f16fd7, $alpha: 0.7);
 
   transition: transform 250ms ease-in-out;
+  box-shadow: 1px 0 1em rgba($color: #000000, $alpha: 0.2);
 }
 
 .header.opened {
@@ -158,7 +159,7 @@ img {
 nav {
   height: 100%;
   width: 100%;
-  border: 2px solid black;
+
   display: flex;
   justify-content: center;
 }
@@ -196,6 +197,12 @@ nav {
 // ==============================
 .page-title {
   text-align: center;
+}
+
+.intro-img {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .tableOfContent {
