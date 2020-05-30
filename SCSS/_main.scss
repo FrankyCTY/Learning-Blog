@@ -33,6 +33,13 @@ a {
   color: blue;
 }
 
+.speciala {
+  color: orangered !important;
+  &:hover {
+    color: steelblue !important;
+  }
+}
+
 .internalLink {
   text-decoration: none;
 

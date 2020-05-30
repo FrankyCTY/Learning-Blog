@@ -28,6 +28,14 @@ a {
   color: blue;
 }
 
+.speciala {
+  color: orangered !important;
+}
+
+.speciala:hover {
+  color: steelblue !important;
+}
+
 .internalLink {
   text-decoration: none;
 }

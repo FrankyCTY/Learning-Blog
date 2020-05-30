@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font awesome  -->
+    <link
+      rel="stylesheet"
+      href="https:+//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+      integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="
+      crossorigin="anonymous"
+    />
+
+    <!-- iconfont -->
+    <link
+      rel="stylesheet"
+      href="//at.alicdn.com/t/font_1791755_n1rvnnmldp.css"
+    />
+
+    <!-- css -->
+    <link rel="stylesheet" href="../SCSS/mix.css" />
+
+    <title>e-commerce project</title>
+  </head>
+  <body>
+    <div class="menu">
+      <span>menu</span>
+    </div>
+    <header class="header">
+      <nav>
+        <ul class="nav-list">
+          <li><a href="../tableOfContent.html">Javascript</a></li>
+          <li><a href="../tableReact.html">React</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main">
+      <h1 class="page-title">
+        eCommerce Project - HomePage
+      </h1>
+      <div class="intro-img">
+        <img src="../img/React/eCommerceProject/finalHomePage.PNG" alt="" />
+        <span>HomePage</span>
+      </div>
+
+      <h3 class="page-subtitle">
+        Stage 0 - Planning
+      </h3>
+      <p>After we use Figma to design the UI of the Page.</p>
+      <ul>
+        <li>Define layout</li>
+        <li>Build HTML and css for the layout</li>
+        <li>Component Architecture</li>
+        <li>Replace HTML and css with components</li>
+      </ul>
+
+      <h3 class="page-subtitle">
+        Stage 1 - Define layout
+      </h3>
+      <img
+        style="width: 40%; display: block;"
+        src="../img/React/eCommerceProject/finalHomePage.PNG"
+        alt=""
+      />
+
+      <p>
+        In the HomePage, we have clearly
+        <span class="clr-good">two sections, </span>one is the
+        <span class="clr-good">Header (Nav)</span> and the other one is the
+        <span style="color: steelblue;">directory</span> that allows user to
+        click and start browsing right away.
+      </p>
+
+      <p class="clr-bad">
+        We can choose one to start with, or create basic layouts for both at the
+        same time.
+      </p>
+      <p class="clr-good">
+        For simplicity, we are starting with the
+        <span style="color: steelblue;">directory section</span> this time.
+      </p>
+
+      <h3 class="page-subtitle" style="display: block;">
+        Stage 2 - Build HTML and css for the layout
+      </h3>
+
+      <img
+        style="width: 40%;"
+        src="../img/react/eCommerceProject/indexjs.PNG"
+        alt=""
+      />
+      <img
+        style="width: 40%;"
+        src="../img/react/eCommerceProject/appjs.PNG"
+        alt=""
+      />
+      <p>
+        A. 3 things set up in advanced,
+        <span class="clr-bad"
+          >index.js connects to app.js and app.js connects to
+          homepage.component.js.</span
+        >
+      </p>
+      <img
+        style="width: 40%; display: block;"
+        src="../img/React/eCommerceProject/basicHTML.PNG"
+        alt=""
+      />
+
+      <p>
+        B. Now we can build the
+        <span class="clr-good">basic HTML and css here for the homepage</span>
+        <span class="clr-bad">(will add nav component in the future)</span>
+        which helps ourselfs to clarify
+        <span style="color: steelblue;">what are we going to build</span> and
+        <span style="color: steelblue;">what components do we need.
+        </p></span>
+
+        <div class="important-block--good">
+        <p><span class="clr-bad">Apparently,</span > we need <span class="clr-good">a directory-menu</span> to <span class="clr-good">contain all five menu-item,</span> and we have <span class="clr-good">title and subtitle</span> inside <span style="color: steelblue">each menu-item.</span> </p>
+        </div>
+      <h3 class="page-subtitle">
+        Stage 3 - Component Architecture
+      </h3>
+
+      <img
+        style="width: 20%; display: block;"
+        src="../img/React/eCommerceProject/componentArchitecture.PNG"
+        alt=""
+      />
+
+      <p class="clr-bad">We now know what are we going to build. <br/>We need to destructure the html into components.</p>
+
+      <p>
+        There are <span class="clr-good">two</span> main types of folder we
+        need, which are
+        <span style="color: steelblue;">components (reusable)</span> and
+        <span style="color: steelblue;">pages (non reusable).</span>
+      </p>
+
+      <p>1. <span class="clr-good">HomePage component</span> obviously will be used once only, so it belongs to the <span style="color: steelblue">page folder.</span></p>
+      <p>2. <span class="clr-good">directory component </span>and <span class="clr-good">menu-item component </span>which are inside of the HomePage component will probably be <span style="color: steelblue">reused,</span> so they will be in the <span style="color: steelblue">component folder.</span></p>
+
+      <h3 class="page-subtitle" style="display: block">
+        Stage 4 - Replace HTML and css with components
+      </h3>
+
+      <img class="img--two" src="../img/React/eCommerceProject/directoryjs.PNG" alt="">
+      <img class="img--two" src="../img/React/eCommerceProject/directoryscss.PNG" alt="">
+      <div class="important-block--good">
+      <p>We just need to easily <span class="clr-good">copy and paste</span> the HTML (now jsx) and scss code to the specfic component.</p>
+      <p>Of cause we need to build the <span style="color: steelblue">hierarchy</span> correctly <span style="color: steelblue">(directory has menuItem)</span></p>
+    </div>
+    <p class="clr-bad"><strong>NOTE: </strong></p>
+    <p>1. The <span style="color: steelblue">directory component</span> is a <span class="clr-good">class component</span> contains a <span class="clr-good">state,</span> because we want to <span style="color: steelblue">populate data from an array of objects.</span></p>
+    <p>2. Then we <span style="color: steelblue">populate the data for all the menuItems</span> using <span style="color: steelblue">map().</span></p>
+    <img src="../img/React/eCommerceProject/homepageDirectory.PNG" alt="">
+</main>
+    <script src="../app.js"></script>
+  </body>
+</html>
