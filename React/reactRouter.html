@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font awesome  -->
+    <link
+      rel="stylesheet"
+      href="https:+//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+      integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="
+      crossorigin="anonymous"
+    />
+
+    <!-- iconfont -->
+    <link
+      rel="stylesheet"
+      href="//at.alicdn.com/t/font_1791755_n1rvnnmldp.css"
+    />
+
+    <!-- css -->
+    <link rel="stylesheet" href="../SCSS/mix.css" />
+
+    <title>React Router</title>
+  </head>
+  <body>
+    <div class="menu">
+      <span>menu</span>
+    </div>
+    <header class="header">
+      <nav>
+        <ul class="nav-list">
+          <li><a href="./tableOfContent.html">Javascript</a></li>
+          <li><a href="./tableReact.html">React</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main">
+      <h1 class="page-title">
+        React Router
+      </h1>
+
+      <h3>Why do we need React Router?</h3>
+
+      <div class="important-block--good">
+        <p>
+          <span class="clr-good">React</span> makes our website into a
+          <span style="color: steelblue;">single web site,</span> which we
+          <span class="clr-bad"
+            >no longer depend on the server for requesting the html files
+            (server side rendering),</span
+          >
+          but depend on the ripple effect created by state changes to render the
+          browser.
+        </p>
+
+        <p>
+          But
+          <span style="color: steelblue;">React is only a UI library </span>and
+          we only have 1 html file and we
+          <span class="clr-bad"
+            >don't have the default browser navigation provided by the
+            browser.</span
+          >
+        </p>
+      </div>
+
+      <p class="clr-bad">
+        What if we not only have a homepage, we also have about page or other
+        pages?
+      </p>
+
+      <p class="clr-good">
+        Thats why we need React Router to solve this problem.
+      </p>
+
+      <h3>Basic React Router</h3>
+
+      <p>
+        There are a few basic properties in
+        <span style="color: steelblue;">'react-router-dom'.</span>
+      </p>
+
+      <div class="important-block--good">
+        <h4><strong>1. BrowserRouter</strong></h4>
+        <img
+          style="width: 40%;"
+          src="../img/React/router/BrowserRouter.PNG"
+          alt=""
+        />
+        <p>
+          Using <span style="color: steelblue;">BroswerRouter</span> to wrap the
+          component, we can
+          <span class="clr-good">entitle the that component </span>all of the
+          functionalities the
+          <span style="color: steelblue;">'react-router-dom'</span> provides.
+        </p>
+
+        <h4><strong>2. Route and path</strong></h4>
+        <img
+          style="width: 40%;"
+          src="../img/React/router/withExact.PNG"
+          alt=""
+        />
+        <p>
+          <span style="color: steelblue;">Route</span> is the
+          <span class="clr-good">component</span> that can be used to show
+          different routes to the pages (about page etc.) routes.
+        </p>
+        <p>
+          <span style="color: steelblue;">Path</span> is the
+          <span class="clr-good">prop</span> used in the Route component to
+          indicate the <span class="clr-good">url path</span> that we want to
+          build.
+        </p>
+
+        <h4><strong>3. exact</strong></h4>
+        <img
+          class="img--two"
+          src="../img/React/router/withoutExact.PNG"
+          alt=""
+        />
+        <img
+          style="width: 30%;"
+          src="../img/React/router/withoutExactHTML.PNG"
+          alt=""
+        />
+
+        <p>
+          It forces we render the
+          <span class="clr-good">oute that has the exact path.</span>
+        </p>
+
+        <p class="clr-bad">
+          !Otherwise urls that share the same part of url path will appear at
+          the same time. (Right img)!
+        </p>
+
+        <p>
+          <span style="color: steelblue;">Exac</span> is the
+          <span style="color: steelblue;">prop</span> used in the
+          <span class="clr-good">Route component,</span> and
+          <span class="clr-bad"
+            >we must have this on the urls that share the part of the url path
+            with other urls.</span
+          >
+          <p class="clr-good"><strong>Perfect Example:</strong></p>
+          <p>The <span style="color: steelblue">homepage</span> - http://localhost:3001<span class="clr-good">/</span></p>
+        </p>
+
+        <h4><strong>4. Switch</strong></h4>
+        <img style="width: 40%;"
+        src="../img/React/router/Switch.PNG"
+        alt="">
+
+        <p>Switch component is similar with the javascript switch, after it finds the first matching Route, it will stop looking for other Routes.</p>
+
+        <p class="clr-good"><strong>Our Example:</strong></p>
+        <p style="color:steelblue">user types: localhost:3001/hats but localhost:3001/ matches)</p>
+        <p>It realize the <span class="clr-bad">first Route (path='/') matches this condition,</span> so it directs us to the <span style="color:steelblue">HomePage.</span></p>
+        <p class="clr-bad" style="text-decoration: underline;">Thats why we need to use <span style="color:steelblue">exact!</span></p>
+        </div>
+
+        <h3>More react-router-dom things</h3>
+        <h4><strong>1. Route component's props object</strong></h4>
+        <img style="width: 40%" src="../img/React/router/routecomponentProps.PNG" alt="">
+        <p>As we all know, <span class="clr-bad">Inside the Route tag,</span> there is a <span class="clr-bad">component argument</span> for us to<span class="clr-good"> populate the callBack component (HomePage etc.)</span></p>
+        <p class="clr-bad"><strong>It also pass a props to the target component containing the Url info.</strong></p>
+        <ul>
+            <li>history obj</li>
+            <li>location obj</li>
+            <li>match obj</li>
+        </ul>
+
+        <div class="important-block--good">
+            <h4>- Inside history obj</h4>
+            <h4>- Inside location obj</h4>
+            <p style="color: steelblue">It contains the info about the url user typed in.</p>
+            <p><span style="color:orangered">pathname -> string</span> = The actual url path typed by the user.</p>
+            <h4>- Inside match obj</h4>
+            <p style="color: steelblue">It contains the info of the matched Route component.</p>
+            <p><span style="color:orangered">isExact -> boolean</span> = is the url matched this Route component perfectly?</p>
+            <p><span style="color:orangered">params -> obj</span> = Include all the url params passed to this specific Route path.</p>
+            <p><span style="color:orangered">path -> string</span> = The matched Route's path.</p>
+            <p><span style="color:orangered">url -> string</span> = The matched Route's url. (with url params written)</p>
+        </div>
+        <h4><strong>2. Url parameter</strong></h4>
+        <img
+        style="width: 40%;"
+        src="../img/React/router/path best.PNG"
+        alt=""
+      />
+      <p class="clr-bad">What is the ':details' in Route path?</p>
+        <p>Url parameter, it is a <span style="color: steelblue">dynamically changin value</span> the get <span class="clr-good">passed as an parameter to the component props.</span></p>
+        
+        <img
+          style="width: 30%;"
+          src="../img/React/router/urlParamProps.PNG"
+          alt=""
+        />
+        <img
+        class="img--two"
+        src="../img/React/router/urlParam.PNG"
+        alt=""
+      />
+        <p style="color: steelblue">http://localhost:3001/list/details/123</p>
+        <div class="important-block--good">
+            <p><span class="clr-bad">Left: </span><span class="clr-good">Url Param 123</span> get passed to the <span style="color: steelblue">corresponding component's props,</span> and we can console.log to see what the props object has.</p>
+            <p><span class="clr-bad">Right: </span><span class="clr-good">Url Param 123</span> is located in the <span style="color: steelblue">props.match.params.details.</span></p>
+            <p class="clr-bad"><strong>So we can manipulate the data that user inputs in the url for backend or UI prupose!</strong></p>
+        </div>
+        <h4><strong>3. About the Route path</strong></h4>
+        <p>Some one asked about why the below issue happens</p>
+        <img
+        style="width: 40%;"
+        src="../img/React/router/path question.PNG"
+        alt=""
+      />
+      <p class="clr-bad">This is because</p>
+      <p>1. The word between the '/' is actually a string, and <span class="clr-bad">/li/ is considered not equal to /list/.</span></p>
+      <p>2. <span class="clr-good">localhost:3000/list/details/20</span> matches <span class="clr-good">TopicList ('/list')</span> and TopcDetail? Because <span class="clr-bad">'list' matches both!</span></p>
+      <p style="color:steelblue">BUT '/list/details/12/random' and '/list/123/' won't match the above url, because the first one is too long and the second one failed matching with details and 123.</p>
+
+      <img
+      style="width: 40%;"
+      src="../img/React/router/path best.PNG"
+      alt=""
+    />
+    <p class="clr-good"><strong>Thats why we should use Switch and exact!</strong></p>
+
+    <h4><strong>4. Link and props.history.push() - navigate between react router dom</strong></h4>
+    <p>Both of <span style="color:steelblue">Link</span> and <span style="color:steelblue">props.history.push()</span> have the same purpose but <span class="clr-bad">different use cases.</span></p>
+    <p class="clr-good"><strong>Both allows us to <span style="color: steelblue">navigate between react router dom.</span> <span class="clr-bad">not only when the user type in url.</span></strong></p>
+
+    <div class="important-block--good">
+        <p style="text-decoration: underline;">1. Link</p>
+        <img
+        style="width: 50%;"
+        src="../img/React/router/Link.PNG"
+        alt=""
+      />
+      <img
+      style="width: 30%;"
+      class="img--two"
+      src="../img/React/router/LinkUI.PNG"
+      alt=""
+    />
+
+    <p><span class="clr-bad">Left: <span style="color: steelblue">Link makes used of to and link to a react router dom path for re rendering.</span></p>
+    <p><span class="clr-bad">Right: </span>It is actually like the <span style="color: steelblue">'a' tag with href from HTML.</p>
+
+        <p style="color: orangered"><strong>Restriction: Link itselfs is already a component, so it is kind of 'static' and 'inflexible'.</strong></p>
+
+    <p style="margin-top: 2em; text-decoration: underline;">2. props.history.push()</p>
+
+    <img
+    style="width: 50%;"
+    src="../img/React/router/historyPush.PNG"
+    alt=""
+  />
+  <img
+  style="width: 30%;"
+  class="img--two"
+  src="../img/React/router/historyPushUI.PNG"
+  alt=""
+/>
+
+<p><span class="clr-bad">Left: </span> <span class="clr-good">props.history.push() </span>is more <span style="color: steelblue">dynamic </span>because it is not a component, it <span style="color: steelblue">can be used everywhere.</span> See we use it in the <span class="clr-bad">call back function of a button component.</span></p>
+<p><span class="clr-bad">Right: </span> We can now wrap <span class="clr-good">props.history.push() </span><span style="color:steelblue">into any component </span>or even inside<span style="color: orangered"> life cycle hooks.</span></p>
+
+<p class='clr-bad'><strong>Link doesn't work in life cycle hooks like componentDIdMount() because they are not jsx but javascrip method.</strong></p>
+</div>
+
+<h4><strong>5. Nested Routing  (Dynamic Routing)</strong></h4>
+
+<p style="color: orangered; text-decoration: underline;">Create links that are based on the current url.</p>
+
+<div class="important-block--good">
+<p><span class="clr-good">With the props</span> that passed to the component <span class="clr-good">inside Route component.</span> </p>
+<p>We can create <span style="color: steelblue">nested routing Link </span>that goes to the react route dom and <span style="color: orangered">it is related to the current component path.</span></p>
+</div>
+
+<img
+style="width: 40%;"
+src="../img/React/router/NestedRoutingCode.PNG"
+alt=""
+/>
+<img
+style="width: 40%;"
+src="../img/React/router/nestedRouting.PNG"
+alt=""
+/>
+<p style="color: steelblue">Using {prop.match.url}</p>
+<p>In the <span class="clr-good">TopicList component,</span> we created 3 different links that is linking to the react route dom path that are <span class="clr-bad">based on it's own url.</span></p>
+
+<img
+style="width: 40%;"
+src="../img/React/router/nestedRoutingAfter.PNG"
+alt=""
+/>
+
+<p>The <span class="clr-good">nested routing links</span> direct us to the <span class="clr-good">TopicDetail component</span></p>
+<p class="clr-bad">AND</p>
+<p><span style="color:steelblue">Print the url parameter </span>that <span class="clr-good">we set for the nested routing Link</span> with <span class="clr-bad">{props.match.params.touserid}.</span></p>
+</main>
+
+    <script src="../app.js"></script>
+  </body>
+</html>
