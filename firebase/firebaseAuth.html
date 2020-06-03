@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font awesome  -->
+    <link
+      rel="stylesheet"
+      href="https:+//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+      integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="
+      crossorigin="anonymous"
+    />
+
+    <!-- iconfont -->
+    <link
+      rel="stylesheet"
+      href="//at.alicdn.com/t/font_1791755_n1rvnnmldp.css"
+    />
+
+    <!-- css -->
+    <link rel="stylesheet" href="../SCSS/mix.css" />
+
+    <title>firebase Authentication</title>
+  </head>
+  <body>
+    <div class="menu">
+      <span>menu</span>
+    </div>
+    <header class="header">
+      <nav>
+        <ul class="nav-list">
+          <li><a href="../tableOfContent.html">Javascript</a></li>
+          <li><a href="../tableReact.html">React</a></li>
+          <li><a href="../tableFirebase.html">Firebase</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main">
+      <h1 class="page-title">
+        firebase Authentication
+      </h1>
+
+      <h3>oAuth - Google log in</h3>
+
+      <ul>
+        <li>Create firebase utils module</li>
+        <li>Add state to App.js</li>
+        <li>Add sign in and sign out functionalities</li>
+      </ul>
+
+      <h4><strong>1. Create firebase utils module</strong></h4>
+      <img
+        style="width: 40%;"
+        src="../img/firebase//firebase Auth/firebase Module.PNG"
+        alt=""
+      />
+
+      <p class="clr-good">
+        <strong>
+          A firebase module allows components to use its functionalities by
+          importing it.</strong
+        >
+      </p>
+
+      <div class="important-block--good">
+        <p class="clr-bad">
+          Required:
+        </p>
+
+        <p>
+          <span style="color: steelblue;">
+            1. import firebase from "firebase/app"</span
+          >
+          <span class="clr-bad"
+            >-> import the core functionalities from the firebase app.</span
+          >
+        </p>
+        <p>
+          <span style="color: steelblue;">
+            2. import "firebase/firestore";</span
+          >
+          <span class="clr-bad"
+            >-> import the database 'firestore' from firebase</span
+          >
+        </p>
+        <p>
+          <span style="color: steelblue;"> 3. import "firebase/auth"</span>
+          <span class="clr-bad"
+            >-> import the authentication part of the firestore.</span
+          >
+        </p>
+
+        <p>
+          <span style="color: steelblue;"> 4. firebase.initialApp(config)</span>
+          <span class="clr-bad"
+            >-> intial the firebase app by connecting it with our firebase
+            account using config.</span
+          >
+        </p>
+        <p>
+          <span style="color: steelblue;">
+            5. const provider = new firebase.auth.GoogleAuthAProvider();</span
+          >
+          <span class="clr-bad"
+            >-> specify the auth provider, we choose google auth here.</span
+          >
+        </p>
+        <p>
+          <span style="color: steelblue;">
+            6. export const siginInWithGoogle = () =>
+            auth.siginInWithPopup(provider);</span
+          >
+          <span class="clr-bad"
+            >-> export the function for other component. It links the provider
+            with the way we want the auth happen together.</span
+          >
+          <span class="clr-good">It will be used as the event to log in.</span>
+        </p>
+
+        <p class="clr-bad">
+          Optional:
+        </p>
+
+        <p>
+          <span style="color: steelblue;">
+            1. provider.setCustomParameters({prompt: "select_account"})</span
+          >
+          <span class="clr-bad"
+            >-> set custom parameters for the authentication.</span
+          >
+        </p>
+      </div>
+
+      <h4><strong>2. Add state to App.js</strong></h4>
+      <img
+        style="width: 40%;"
+        src="../img/firebase//firebase Auth/firebase state.PNG"
+        alt=""
+      />
+
+      <p>
+        <span class="clr-bad"
+          >We added the login state (current user) to app.js </span
+        >because
+        <span style="color: steelblue;"
+          ><strong
+            >the login state should be able to affect all components.</strong
+          ></span
+        >
+      </p>
+
+      <img
+        style="width: 40%;"
+        src="../img/firebase//firebase Auth/auth onAuthStateChanged.PNG"
+        alt=""
+      />
+
+      <p>
+        We use <span class="clr-good">auth.onAuthStateChanged() </span>to
+        <span class="clr-bad"
+          >monitor the state changes of the authentication </span
+        >in order to
+        <span style="color: steelblue;">set the log in state.</span>
+      </p>
+
+      <p>
+        <span class="clr-bad">NOTE: </span>It is included in the life cycle
+        hooks -
+        <span class="clr-good">componentDidMount(),</span>
+        <span style="color: steelblue;"
+          >so it will be created after the initial render().</span
+        >
+      </p>
+
+      <img
+        style="width: 40%;"
+        src="../img/firebase//firebase Auth/destroy onAuthStateChanged.PNG"
+        alt=""
+      />
+
+      <p class="clr-bad">
+        auth.onAuthStateChanged() will return a function for us to destroy
+        itself.
+      </p>
+
+      <p>
+        We <span class="clr-bad">destroy the auth.onAuthStateChanged() </span>if
+        <span class="clr-good">the app component get unmounted.</span>
+      </p>
+
+      <h4><strong>3. Add sign in and sign out functionalities</strong></h4>
+
+      <img
+        style="width: 40%;"
+        src="../img/firebase//firebase Auth/signInWithGoogle.PNG"
+        alt=""
+      />
+
+      <p>
+        The <span class="clr-good">siginInWithGoogle method </span>we created in
+        the firebase module can now be
+        <span class="clr-good">linked to a button.</span>
+      </p>
+
+      <img
+        style="width: 30%;"
+        src="../img/firebase//firebase Auth/sign out.PNG"
+        alt=""
+      />
+
+      <p class="clr-bad">
+        <strong>
+          Create a link that is responsives according to the log in
+          state.</strong
+        >
+      </p>
+
+      <p>
+        <span style="color: steelblue;">if user has logged in </span>-> create
+        <span class="clr-good">sign out link </span>with
+        <span style="color: orangered;">auth.siginOut() </span>for log out.
+      </p>
+
+      <p>
+        <span style="color: steelblue;"
+          >else if user has not yet logged in </span
+        >-> create <span class="clr-good">sign in link.</span>
+      </p>
+    </main>
+
+    <script src="../app.js"></script>
+  </body>
+</html>
