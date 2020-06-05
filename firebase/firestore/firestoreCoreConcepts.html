@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font awesome  -->
+    <link
+      rel="stylesheet"
+      href="https:+//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+      integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="
+      crossorigin="anonymous"
+    />
+
+    <!-- iconfont -->
+    <link
+      rel="stylesheet"
+      href="//at.alicdn.com/t/font_1791755_n1rvnnmldp.css"
+    />
+
+    <!-- css -->
+    <link rel="stylesheet" href="../../SCSS/mix.css" />
+
+    <title>Firestore Core Concepts</title>
+  </head>
+  <body>
+    <div class="menu">
+      <span>menu</span>
+    </div>
+    <header class="header">
+      <nav>
+        <ul class="nav-list">
+          <li><a href="../../tableOfContent.html">Javascript</a></li>
+          <li><a href="../../tableReact.html">React</a></li>
+          <li><a href="../../tableFirebase.html">Firebase</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main">
+      <h1 class="page-title">Firestore Core Concepts</h1>
+
+      <h3 class="page-subtitle">The 4 data modeling techniques</h3>
+      <p>
+        The
+        <span class="clr-good">data that we query from the firestore </span>is
+        always the
+        <span style="color: steelblue;">whole document.</span>
+      </p>
+      <div class="important-block--good">
+        <p class="clr-bad">We design the data model base on 3 things.</p>
+        <p style="color: steelblue;">1. UI</p>
+        <p style="color: steelblue;">2. Performance</p>
+        <p style="color: steelblue;">3. Security</p>
+      </div>
+
+      <p>Data Modeling techniques</p>
+      <ul>
+        <li>Embedding - Model data directly on a document.</li>
+        <li>
+          Root collection - Normalize data into separate collections, then
+          reference document IDs.
+        </li>
+        <li>Subcollection - Nest data in a collection under a document.</li>
+        <li>
+          Bucke - Separate data into multiple documents, but embed as much as
+          possible.
+        </li>
+      </ul>
+
+      <p><strong>1. Embedding</strong></p>
+
+      <img src="../../img/firebase/firestore/concepts/embedding.PNG" alt="" />
+
+      <p style="color: orangered;">
+        <span>Embedding</span> - Putting all the tags into the Post document
+        using <span style="text-decoration: underline;">map</span> instead of
+        normalizing them into their own tag subcollection.
+      </p>
+
+      <p class="clr-good">Pros:</p>
+      <p>
+        <span style="color: steelblue;">1. Performance </span>- Only require a
+        <span class="clr-good">single document read.</span>
+      </p>
+      <p class="clr-bad">Cons:</p>
+      <p>
+        <span style="color: steelblue;">1. Security </span>- Everytime we query
+        data from firestore, we get the whole document,
+        <span class="clr-bad"
+          >imagine we if we are not saving tags here but saving address.</span
+        >
+      </p>
+      <p>
+        <span style="color: steelblue;">2. Readability </span>-
+        <span class="clr-bad"
+          >Cannot save big data set (>1mb) into the document </span
+        >and readability wil be bad.
+      </p>
+      <p>
+        <span style="color: steelblue;">3. Unnecessary Data </span>- We will
+        receive some <span class="clr-bad">extra unnecessary data </span
+        ><span class="clr-good">within the same document. </span>
+      </p>
+
+      <p><strong>2. Root Collection</strong></p>
+
+      <img
+        src="../../img/firebase/firestore/concepts/OneToManyRootCollection.PNG"
+        alt=""
+      />
+
+      <p style="color: orangered;">
+        <span>Root Collection</span> - Creating a root collection for the 'tags'
+        and
+        <span style="text-decoration: underline;"
+          >maintain the relationship denormalizing the data into two root collections to reference each other as a small piece of field.</span
+        >
+      </p>
+
+      <p><strong>3. SubCollections</strong></p>
+
+      <img
+      class="img--two"
+        src="../../img/firebase/firestore/concepts/subCollection.PNG"
+        alt=""
+      />
+      <img
+      class="img--two"
+        src="../../img/firebase/firestore/concepts/subcollectionSimulation.PNG"
+        alt=""
+      />
+
+      <p style="color: orangered;">
+        <span>Subcollection</span> - Create a subcollection that is
+        <span style="text-decoration: underline;"
+          >nested inside of a document.</span
+        >
+      </p>
+
+      <p>
+        We can use
+        <span style="color: steelblue;">Query Multiple Collection</span> to
+        <span class="clr-bad"
+          >query the property across different subcollections.</span
+        >
+      </p>
+
+      <p><strong>4. Bucket</strong></p>
+
+      <img
+        class="img--two"
+        src="../../img/firebase/firestore/concepts/Bucket.PNG"
+        alt=""
+      />
+      <img
+        class="img--two"
+        src="../../img/firebase/firestore/concepts/BucketRead.PNG"
+        alt=""
+      />
+
+      <p style="color: orangered;">
+        <span>Bucket</span> - Two related documents in different collections
+        linked with each other using the
+        <span style="text-decoration: underline;">same doc id.</span>
+      </p>
+
+      <p>
+        This leverage between the embedding and subcollection methods, which
+        need 1 document read and multiple document read with different cons.
+      </p>
+
+      <!-- ============================= Data Modeling Criteria ======================== -->
+      <h3 class="page-subtitle">Data Modeling Criteria</h3>
+
+      <p style="color: orangered;">
+        A loose rule to follow is base on the cardinality or maximum size of the
+        set.
+      </p>
+
+      <ul>
+        <li>1. One-to-Few -> Embed</li>
+        <li>2. One-to-Hundreds -> Bucket</li>
+        <li>
+          3. One-to-Billions -> Collection (subcollection / root collection)
+        </li>
+      </ul>
+      <p class="clr-bad">
+        <strong>Using Authors collection as an example</strong>
+      </p>
+      <p><strong>1. One-to-Few -> Embed</strong></p>
+
+      <img
+        style="width: 40%;"
+        src="../../img//firebase/firestore/concepts/EmbeddingCriteria.PNG"
+        alt=""
+      />
+      <p>
+        <span style="color: steelblue;"
+          >⭐Since we determine that each author doc (dr-seuss) in the authors
+          collection will only have a few books, </span
+        >so it will be <span class="clr-good">resonable </span>to put the books
+        <span style="color: steelblue;">embeded into the author doc.</span>
+      </p>
+
+      <p class="clr-bad">BUT we should consider about the security as well.</p>
+      <p>We can consider to use bucket or saving doc id inside of the author doc field.</p>
+      <p><strong>2. One-to-Hundreds -> Bucket</strong></p>
+
+      <img
+        style="width: 60%;"
+        src="../../img//firebase/firestore/concepts/BucketCriteria.PNG"
+        alt=""
+      />
+      <p>
+        <span
+          >⭐If the data set (books) is big (>100), then we can
+          <span class="clr-good">open a books collection </span>and
+          <span class="clr-good"
+            >the book document can be linked to the author doc (dr-seuss) </span
+          >using the
+          <span style="color: steelblue;"
+            >same document ID (dr-seuss).</span
+          ></span
+        ></span>
+      </p>
+
+      <p class="clr-bad">REMEMBER, each collection should be unique and the documents in different collections are linked with the same document ID only.</p>
+
+      <p><strong>3. One-to-Billions -> Collection (subcollection / root collection)</strong></p>
+
+      <img
+        style="width: 40%;"
+        src="../../img//firebase/firestore/concepts/CollectionCriteria.PNG"
+        alt=""
+      />
+      <p>
+        ⭐Since the data set is too high, <span style="color: steelblue;"
+          >we can utilize the scalibility of collection, </span>which can scale up to <span class="clr-good">unlimited documents without affecting the query performance.</span>
+      </p>
+
+      <!-- ========================= Data Relationship Criteria ========================== -->
+      <h3 class="page-subtitle">Data Relationship Criteria</h3>
+
+      <p style="color: orangered;">
+        A loose rule to follow is base on the cardinality or maximum size of the
+        set.
+      </p>
+
+      <ul>
+        <li>1. One-to-One</li>
+        <li>2. One-to-Many</li>
+        <li>
+          3. Many-to-Many
+        </li>
+      </ul>
+      <p class="clr-bad">
+        <strong>Using Authors collection as an example</strong>
+      </p>
+      <p><strong>1. One-to-One</strong></p>
+
+      <p style="text-decoration: underline;">Embed - public data</p>
+
+      <img
+      style="width: 40%;"
+      src="../../img//firebase/firestore/concepts/OneToOneEmbed.PNG"
+      alt=""
+      />
+
+      <img
+      style="width: 40%;"
+      src="../../img//firebase/firestore/concepts/OneToOneEmbbedCode.PNG"
+      alt=""
+      />
+      <p>
+
+          ⭐We can use <span class="clr-good">embeded method </span>if the <span style="color: steelblue;">data set is small</span> and the <span style="color: steelblue;">specific data can be public to the front-end.</span>
+      </p>
+
+      <p class="clr-bad"><strong>If the data contains sensitive / private information</strong></p>
+
+      <p style="text-decoration: underline;">Bucket - private data + shared doc Id</p>
+
+      <img
+      style="width: 50%;"
+      src="../../img//firebase/firestore/concepts/OneToOneBucket.PNG"
+      alt=""
+      />
+
+      <img
+      style="width: 40%;"
+      src="../../img//firebase/firestore/concepts/OneToOneBucketCode.PNG"
+      alt=""
+      />
+
+      <p>
+          ⭐For <span class="clr-bad">private data, </span>we can use <span class="clr-good">bucket method </span> to <span style="color: steelblue">seperate the data into different documents </span>and <span style="color: steelblue">maintain their relationship with the same doc id.</span>
+      </p>
+
+      <p style="text-decoration: underline;">Embeded doc id - private data + no shared doc Id</p>
+
+      <img
+      style="width: 50%;"
+      src="../../img//firebase/firestore/concepts/OneToOneDocIdInField.PNG"
+      alt=""
+      />
+
+      <img
+      style="width: 40%;"
+      src="../../img//firebase/firestore/concepts/OneToOneEmbeddedDocId.PNG"
+      alt=""
+      />
+      <p>
+          ⭐<span class="clr-bad">Less efficiency, </span> we can <span style="color: steelblue">save the target data doc Id </span>into the author doc to link them.
+      </p>
+
+      <p class="clr-bad">This method requires us to query for the target data doc Id first.</p>
+
+
+      <p><strong>2. One-to-Many</strong></p>
+
+      
+
+      <img
+        style="width: 40%;"
+        src="../../img//firebase/firestore/concepts/OneToManyEmbedded.PNG"
+        alt=""
+      />
+      <p class="clr-bad">
+        What is the problem with Embedded method?
+      </p>
+
+     <p class="clr-good">Data Set size can not be too big, and <span style="text-decoration: underline;">we can not make query on different documents.</span></p>
+
+     <img
+     style="width: 40%;"
+     src="../../img//firebase/firestore/concepts/QueryAcrossMultipleParents.PNG"
+     alt=""
+   />
+
+   <p style="color: orangered">Ask yourself this question before designing the data model.</p>
+
+    <p class="clr-bad" style="text-decoration: underline;"><strong>If we do need to query across multiple parents.</strong></p>
+
+    <img style="width: 35%" class="img--two" src="../../img/firebase/firestore/concepts/OneToManySubCollection.PNG" alt="">
+    <img class="img--two" src="../../img/firebase/firestore/concepts/OneToManyRootCollection.PNG" alt="">
+
+    <p><span style="color: steelblue">LEFT: Subcollection </span>- With <span style="color: orangered">Collection Group Queries</span></p>
+    <img style="width: 30%" src="../../img/firebase/firestore/CollectionGroupQueries.PNG" alt="">
+    <p><span style="color: steelblue">RIGHT: Root Collection</span></p>
+    <img style="width: 30%" src="../../img/firebase/firestore/concepts/OneToManyRootCollectionCode.PNG" alt="">
+
+      <p><strong>3. Many-to-Many</strong></p>
+
+      <img
+        style="width: 40%;"
+        src="../../img//firebase/firestore/concepts/CollectionCriteria.PNG"
+        alt=""
+      />
+      <p>
+        ⭐Since the data set is too high, <span style="color: steelblue;"
+          >we can utilize the scalibility of collection, </span>which can scale up to <span class="clr-good">unlimited documents without affecting the query performance.</span>
+      </p>
+
+    </main>
+
+    <script src="../../app.js"></script>
+  </body>
+</html>

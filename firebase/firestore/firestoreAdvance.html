@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font awesome  -->
+    <link
+      rel="stylesheet"
+      href="https:+//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+      integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="
+      crossorigin="anonymous"
+    />
+
+    <!-- iconfont -->
+    <link
+      rel="stylesheet"
+      href="//at.alicdn.com/t/font_1791755_n1rvnnmldp.css"
+    />
+
+    <!-- css -->
+    <link rel="stylesheet" href="../../SCSS/mix.css" />
+
+    <title>Firestore Advanced Techniques</title>
+  </head>
+  <body>
+    <div class="menu">
+      <span>menu</span>
+    </div>
+    <header class="header">
+      <nav>
+        <ul class="nav-list">
+          <li><a href="../../tableOfContent.html">Javascript</a></li>
+          <li><a href="../../tableReact.html">React</a></li>
+          <li><a href="../../tableFirebase.html">Firebase</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main">
+      <h1 class="page-title">Firestore Advanced Techniques</h1>
+
+      <h3 class="page-subtitle">Data Duplication (Denormalization)</h3>
+
+      <img
+        style="display: block;"
+        src="../../img/firebase/firestore/advanced/denormalization.PNG"
+        alt=""
+      />
+
+      <p class="clr-bad">
+        Data Duplication / Denormalization is considered bad practice in SQL
+        database.
+      </p>
+
+      <p class="clr-good">
+        ⭐But it is very normal use cases in NoSQL and firestore.
+      </p>
+
+      <div class="important-block--good">
+        <span style="color: steelblue;">Perfect </span>for data that required
+        <span style="color: orangered;"
+          >Reads > Writes + Rarely changed data.</span
+        >
+
+        <p>
+          <span class="clr-good">Pros: </span>Achieve single document read for
+          the data.
+        </p>
+
+        <p>
+          <span class="clr-bad">Cons: </span>Writing the data will be required
+          for all the document that it denormalized to.
+        </p>
+      </div>
+    </main>
+
+    <script src="../../app.js"></script>
+  </body>
+</html>

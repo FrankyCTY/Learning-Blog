@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font awesome  -->
+    <link
+      rel="stylesheet"
+      href="https:+//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+      integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="
+      crossorigin="anonymous"
+    />
+
+    <!-- iconfont -->
+    <link
+      rel="stylesheet"
+      href="//at.alicdn.com/t/font_1791755_n1rvnnmldp.css"
+    />
+
+    <!-- css -->
+    <link rel="stylesheet" href="../../SCSS/mix.css" />
+
+    <title>Firestore Introduction</title>
+  </head>
+  <body>
+    <div class="menu">
+      <span>menu</span>
+    </div>
+    <header class="header">
+      <nav>
+        <ul class="nav-list">
+          <li><a href="../../tableOfContent.html">Javascript</a></li>
+          <li><a href="../../tableReact.html">React</a></li>
+          <li><a href="../../tableFirebase.html">Firebase</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main">
+      <h1 class="page-title">Firestore Introduction</h1>
+
+      <h3>What is Firestore?</h3>
+      <p>
+        <span style="color: orangered;">Cloud firestore </span>is a
+        <span class="clr-good">document database </span>that stores the data in
+        a <span class="clr-good">tree like structure </span>and everything is
+        placed into
+        <span style="color: steelblue;">documents and collections.</span>
+      </p>
+
+      <h3>Document</h3>
+      <p>
+        It can be thought of a
+        <span class="clr-good">javascript object</span> that consisted of
+        <span class="clr-good">key value pairs (fields),</span> but with more
+        data types that we can use in it.
+      </p>
+
+      <p class="clr-bad">Restriction:</p>
+      <p>
+        Document <span class="clr-bad">can not </span>point to other document,
+        but it <span class="clr-good">can </span>point to subcollection.
+      </p>
+
+      <img
+        style="width: 40%; display: block;"
+        src="../../img//firebase/firestore/intro/documentToSubCollections.PNG"
+        alt=""
+      />
+      <p class="clr-bad">Gray box is collection, blue box is document</p>
+
+      <h3>Collection</h3>
+      <p>
+        <span class="clr-good">Collection of documents, </span>it can only
+        contain document.
+      </p>
+    </main>
+
+    <script src="../../app.js"></script>
+  </body>
+</html>

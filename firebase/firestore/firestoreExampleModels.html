@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font awesome  -->
+    <link
+      rel="stylesheet"
+      href="https:+//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+      integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="
+      crossorigin="anonymous"
+    />
+
+    <!-- iconfont -->
+    <link
+      rel="stylesheet"
+      href="//at.alicdn.com/t/font_1791755_n1rvnnmldp.css"
+    />
+
+    <!-- css -->
+    <link rel="stylesheet" href="../../SCSS/mix.css" />
+
+    <title>Firestore Example Models</title>
+  </head>
+  <body>
+    <div class="menu">
+      <span>menu</span>
+    </div>
+    <header class="header">
+      <nav>
+        <ul class="nav-list">
+          <li><a href="../../tableOfContent.html">Javascript</a></li>
+          <li><a href="../../tableReact.html">React</a></li>
+          <li><a href="../../tableFirebase.html">Firebase</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main">
+      <h1 class="page-title">Firestore Example Models</h1>
+
+      <ul>
+        <li>Votes</li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+
+      <h3 class="page-subtitle">Votes</h3>
+      <img
+        style="display: block; width: 80%;"
+        src="../../img/firebase/firestore/ExampleModels/VoteModel.PNG"
+        alt=""
+      />
+
+      <div class="important-block--good">
+        <p>
+          We want to
+          <span style="color: steelblue;"
+            >record the vote for the users and the posts, </span
+          >thats why we have
+          <span class="clr-good">upvotes field in each user / post doc.</span>
+        </p>
+
+        <p>
+          <span class="clr-good">In the votes collection, </span>it acts as the
+          <span style="color: steelblue;">middle man collection </span>that
+          <span class="clr-good"
+            >the document id will be consisted with user doc id and post doc
+            id.</span
+          >
+        </p>
+
+        <p>
+          The votes collection doc contains fields about the user doc and post
+          doc.
+        </p>
+
+        <p class="clr-bad">
+          <strong
+            >The total vote can be calculated using Cloud Function.</strong
+          >
+        </p>
+      </div>
+
+      <p class="clr-good"><strong>My Suggestion</strong></p>
+
+      <p>
+        <span style="color: steelblue;">Consideration 1: </span>We are using
+        <span class="clr-good">enormalization </span>din the votes collection,
+        <span class="clr-good"
+          >although the duplicated data (userid and postid) will not be changed
+          frequently, </span
+        ><span class="clr-bad"
+          >changing them can cause writing to lots of document. (depends on the
+          related doc)</span
+        >
+      </p>
+
+      <p>
+        <span style="color: steelblue;">Solution 1: </span>Changing the userid
+        and postid into some unique identifier that will never change.
+      </p>
+    </main>
+
+    <script src="../../app.js"></script>
+  </body>
+</html>

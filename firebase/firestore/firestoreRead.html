@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font awesome  -->
+    <link
+      rel="stylesheet"
+      href="https:+//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+      integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="
+      crossorigin="anonymous"
+    />
+
+    <!-- iconfont -->
+    <link
+      rel="stylesheet"
+      href="//at.alicdn.com/t/font_1791755_n1rvnnmldp.css"
+    />
+
+    <!-- css -->
+    <link rel="stylesheet" href="../../SCSS/mix.css" />
+
+    <title>Firestore Read</title>
+  </head>
+  <body>
+    <div class="menu">
+      <span>menu</span>
+    </div>
+    <header class="header">
+      <nav>
+        <ul class="nav-list">
+          <li><a href="../../tableOfContent.html">Javascript</a></li>
+          <li><a href="../../tableReact.html">React</a></li>
+          <li><a href="../../tableFirebase.html">Firebase</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main">
+      <h1 class="page-title">Firestore Read</h1>
+
+      <div class="important-block--good">
+        <p class="clr-good">
+          To read data from a document, we have two ways to do it.
+        </p>
+
+        <p><strong>1. Read with collection document</strong></p>
+
+        <p style="color: steelblue;">
+          const docRef = firestore.collection('posts').doc('postId');
+        </p>
+
+        <p><strong>2. Read with Path</strong></p>
+        <p style="color: steelblue;">
+          const docRef = firestore.doc('/posts/postId')
+        </p>
+
+        <p>
+          <span class="clr-good"> - Accessing the collection or document </span
+          >with these two ways will
+          <span style="color: steelblue;">return a document reference.</span>
+        </p>
+
+        <p>
+          <span class="clr-good">
+            - We can perform CRUD operations (get() / set() / update()) </span
+          >on the document reference which will
+          <span style="color: steelblue;">return Promise (snapshot). </span>
+        </p>
+      </div>
+      <h3 class="page-subtitle">Single Doc Read</h3>
+      <img
+        style="display: block;"
+        src="../../img/firebase/firestore/Read/SingleRead.PNG"
+        alt=""
+      />
+
+      <p>Getting a document reference from a single document.</p>
+      <h3 class="page-subtitle">Bucket Read</h3>
+      <img
+        style="display: block;"
+        src="../../img/firebase/firestore/Read/BucketRead.PNG"
+        alt=""
+      />
+      <p>
+        Getting two document references from different collections with same
+        document id.
+      </p>
+      <h3 class="page-subtitle">Array of Documents in a single collection</h3>
+      <img
+        style="display: block;"
+        src="../../img/firebase/firestore/Read/documentsInACollection.PNG"
+        alt=""
+      />
+      <p>
+        Here is a helper function below to query an array of document IDs. This
+        is especially useful when you have a
+        <span style="color: steelblue;">many-to-many data model.</span>
+      </p>
+    </main>
+
+    <script src="../../app.js"></script>
+  </body>
+</html>
