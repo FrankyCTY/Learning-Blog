@@ -37,6 +37,7 @@ a {
 }
 
 .internalLink {
+  cursor: pointer;
   text-decoration: none;
 }
 

@@ -49,13 +49,27 @@
       <h3>What is Firestore?</h3>
       <p>
         <span style="color: orangered;">Cloud firestore </span>is a
-        <span class="clr-good">document database </span>that stores the data in
-        a <span class="clr-good">tree like structure </span>and everything is
-        placed into
+        <span class="clr-good">document-model database </span>that stores the
+        data in a <span class="clr-good">tree like structure </span>and
+        everything is placed into
         <span style="color: steelblue;">documents and collections.</span>
       </p>
 
-      <h3>Document</h3>
+      <p>
+        It also offers <span class="clr-good">seamless integration </span>with
+        other firebase products, including
+        <span class="clr-good">Cloud Functions.</span>
+      </p>
+
+      <ul>
+        <li>Data is stored hierarchically</li>
+        <li>Shallow Queries</li>
+        <li>Allow Composite Indexes</li>
+        <li>Sever side Development</li>
+        <li><a class="internalLink" href="#indexes">Indexes</a></li>
+      </ul>
+
+      <!-- <h3>Document</h3>
       <p>
         It can be thought of a
         <span class="clr-good">javascript object</span> that consisted of
@@ -80,7 +94,79 @@
       <p>
         <span class="clr-good">Collection of documents, </span>it can only
         contain document.
+      </p> -->
+
+      <h3 class="page-subtitle" id="indexes">Indexes</h3>
+      <div class="important-block--good">
+        <p>
+          <span class="clr-good">Cloud Firestore </span>makes use of
+          <span style="color: steelblue;">indexes </span>for us to
+          <span class="clr-good">rapidly query items,</span> which
+          <span class="clr-bad"
+            >doesn't need to crawl through the contens item by item.</span
+          >
+        </p>
+
+        <p style="color: orangered;">
+          Indexes guarantees high query performance by using indexes for all
+          queries.
+        </p>
+      </div>
+
+      <p><strong>1. Single-field indexes vs Composite indexes</strong></p>
+      <p style="color: steelblue;">
+        Example (Single-field indexes):
+        firestore.collection(countries).where("capital", "desc");
       </p>
+      <p style="color: steelblue;">
+        Example (Composite indexes):
+        firestore.collection(countries).where("capital",
+        "desc").orderBy("population", "asc");
+      </p>
+      <p>
+        ⭐Cloud firestore <span class="clr-good">automatically</span> implement
+        <span style="color: steelblue;">Single-field indexes </span>for
+        <a class="internalLink" style="color: steelblue;">collection-scope</a>,
+        the indexes are created by <span class="clr-bad">default:</span>
+      </p>
+
+      <ul>
+        <li>Non-array && Non-map field - desc && asc</li>
+        <li>Map field's Non-array && Non-map field - desc && asc</li>
+        <li>Array field - array-contains</li>
+      </ul>
+
+      <p><strong>2. Collection Scope vs Collection Group Scope</strong></p>
+
+      <p>
+        ⭐Cloud Firestore <span class="clr-bad">default </span>indexes are set
+        around <span style="color: steelblue;">Collection Scope</span>, which
+        means we can use the indexes to
+        <span style="color: orangered;"
+          >query / order data within the same collection.</span
+        >
+      </p>
+
+      <p>
+        ⭐<span style="color: steelblue;">Collection Group Scope</span> is the
+        scope that
+        <span class="clr-good"
+          >across different collections (mostly subcollections) </span
+        >that with the <span style="color: orangered;">same Id.</span>
+      </p>
+
+      <p><strong>3. Indexes best practice</strong></p>
+
+      <p>
+        For most apps, you can rely on automatic indexing and the error message
+        links to manage your indexes. However, you may want to add single-field
+        exemptions in the following cases:
+      </p>
+
+      <img
+        src="../../img/firebase/firestore/intro/IndexesBestPractice.PNG"
+        alt=""
+      />
     </main>
 
     <script src="../../app.js"></script>
