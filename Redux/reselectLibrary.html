@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font awesome  -->
+    <link
+      rel="stylesheet"
+      href="https:+//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+      integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="
+      crossorigin="anonymous"
+    />
+
+    <!-- iconfont -->
+    <link
+      rel="stylesheet"
+      href="//at.alicdn.com/t/font_1791755_n1rvnnmldp.css"
+    />
+
+    <!-- css -->
+    <link rel="stylesheet" href="../SCSS/mix.css" />
+
+    <title>Reselect</title>
+  </head>
+  <body>
+    <div class="menu">
+      <span>menu</span>
+    </div>
+    <header class="header">
+      <nav>
+        <ul class="nav-list">
+          <li><a href="../tableOfContent.html">Javascript</a></li>
+          <li><a href="../tableReact.html">React</a></li>
+          <li><a href="../tableFirebase.html">Firebase</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main">
+      <h1 class="page-title">
+        Reselect Library
+      </h1>
+
+      <h3 class="page-subtitle">
+        Why do we need reselect?
+      </h3>
+
+      <ul>
+        <li>
+          Concerns are not seperated:
+          <span class="clr-good"
+            >Client side calculations could live in the component -
+            mapStateToProps etc.</span
+          >
+        </li>
+        <li>
+          Client side calculations is not well organized and reusable enough.
+        </li>
+        <li>Unnecessary Rerendering</li>
+      </ul>
+
+      <p>
+        <strong>1. Process state before outputing</strong>
+      </p>
+      <p>
+        <strong>2. Not well organized and reusable</strong>
+      </p>
+
+      <img src="../img/Redux/Reselect/separateConcerns.PNG" alt="" />
+
+      <p></p>
+
+      <h3 class="page-subtitle">
+        What does reselect do?
+      </h3>
+
+      <img
+        style="display: block;"
+        src="../img/Redux/Reselect/reselectRoadmapp.PNG"
+        alt=""
+      />
+
+      <p>
+        ⭐<span style="color: steelblue;">Reselect library </span
+        ><span style="color: orangered;">organizes our states </span>and makes
+        our code
+        <span style="color: orangered;">reusable + consistent </span>and gives
+        us a space to <span style="color: orangered;">process the data </span
+        ><span class="clr-good">before outputing them to the components.</span>
+      </p>
+
+      <h3 class="page-subtitle">
+        Set up reselect
+      </h3>
+
+      <img
+        style="width: 40%; display: block;"
+        src="../img/Redux/Reselect/reselectDirectory.PNG"
+        alt=""
+      />
+
+      <p>⭐Add xxx.selectors.js</p>
+
+      <img
+        style="width: 100%;"
+        src="../img/Redux/Reselect/reselectHelpsOrganise.PNG"
+        alt=""
+      />
+
+      <p><span style="color: steelblue;">LEFT: </span>xxx.selectors.js</p>
+      <p><span style="color: steelblue;">RIGHT: </span>Component</p>
+    </main>
+    <script src="../app.js"></script>
+  </body>
+</html>

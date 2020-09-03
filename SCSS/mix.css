@@ -256,4 +256,29 @@ nav {
 .tableOfContent a:hover {
   color: steelblue;
 }
+
+.tableOfContent--sub {
+  display: -ms-grid;
+  display: grid;
+  justify-items: left;
+  padding-top: 5em;
+  padding-left: 20%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 5vh;
+  -ms-grid-columns: (minmax(400px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-auto-rows: 60px;
+}
+
+.tableOfContent--sub a {
+  color: black;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.tableOfContent--sub a:hover {
+  color: steelblue;
+}
 /*# sourceMappingURL=mix.css.map */

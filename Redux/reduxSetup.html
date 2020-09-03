@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font awesome  -->
+    <link
+      rel="stylesheet"
+      href="https:+//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+      integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="
+      crossorigin="anonymous"
+    />
+
+    <!-- iconfont -->
+    <link
+      rel="stylesheet"
+      href="//at.alicdn.com/t/font_1791755_n1rvnnmldp.css"
+    />
+
+    <!-- css -->
+    <link rel="stylesheet" href="../SCSS/mix.css" />
+
+    <title>Redux Setup</title>
+  </head>
+  <body>
+    <div class="menu">
+      <span>menu</span>
+    </div>
+    <header class="header">
+      <nav>
+        <ul class="nav-list">
+          <li><a href="../tableOfContent.html">Javascript</a></li>
+          <li><a href="../tableReact.html">React</a></li>
+          <li><a href="../tableFirebase.html">Firebase</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main">
+      <h1 class="page-title">
+        Redux Setup
+      </h1>
+
+      <h3 class="page-title">Installation</h3>
+
+      <p class="clr-good">⭐npm install redux redux-logger react-redux</p>
+      
+      <h3 class="page-title">Redux Flow (detailed)</h3>
+
+      <img style="display: block" src="../img/Redux/Redux setUp/reduxFlowDetailed.PNG" alt="">
+
+      <h3 class="page-title">Redux Set Up Steps</h3>
+
+      
+      <p>
+          ⭐The principle of the steps is to create a
+          <span class="clr-good">centralized state object</span> for
+          <span style="color: orangered;">state management.</span>
+        </p>
+        
+        <ul>
+            <li>
+                1. Wrapping the App component with
+                <span class="clr-good">"Provider"</span> inside of index.js
+            </li>
+            <li>2. Create <span class="clr-good">root-reducer.js</span></li>
+        <li>
+          3. Split different states into
+          <span class="clr-good"
+            >different reducer.js (example: user.reducer.js)</span
+          >
+        </li>
+        <li>
+          4. Create the <span class="clr-good">actions.js </span>to
+          <span class="clr-good"
+            >define the action the corresponding reducer.</span
+          >
+        </li>
+        <li>
+          5. Use <span class="clr-good">combineReducers </span>to create the
+          final root reducer obj.
+        </li>
+        <li>
+          6. Create the <span class="clr-good">store.js</span> And
+          <span class="clr-good">link it to "Provider"</span>
+        </li>
+        <li>
+          7. <span class="clr-good"></span>"setState"</span> from a component using redux
+          Component gets state as their props
+        </li>
+        <li>
+          8. Create the
+          <span class="clr-good">Component gets state as their props</span>
+        </li>
+      </ul>
+
+      <p>
+        <strong
+          >1. Adding
+          <span style="color: steelblue;">"Provider" to index.js</span></strong
+        >
+      </p>
+
+      <img
+        style="display: block; width: 40%;"
+        src="../img/Redux/Redux setUp/Provider.PNG"
+        alt=""
+      />
+
+      <p>
+        <strong
+          >2. Create
+          <span style="color: steelblue;">root-reducer.js</span></strong
+        >
+      </p>
+
+      <img
+        style="display: block; width: 50%;"
+        src="../img/Redux/Redux setUp/rootReducer.PNG"
+        alt=""
+      />
+
+      <p>
+        ⭐Create a <span class="clr-good">redux folder </span>in the src folder.
+      </p>
+      <div class="important-block--good">
+        <p>
+          <strong
+            >3. Split different states into
+            <span style="color: steelblue;">different reducer.js</span></strong
+          >
+        </p>
+
+        <p style="color: steelblue;">We use curretUser state as an example.</p>
+
+        <img
+          style="width: 40%;"
+          src="../img/Redux/Redux setUp/userReducer.PNG"
+          alt=""
+        />
+
+        <ul>
+          <li>
+            1. Create INITIAL_STATE obj -
+            <span class="clr-good">The initial state of the state object.</span>
+          </li>
+          <li>
+            2. Define the userReducer function
+            <span class="clr-good">(pure function)</span> and how the state
+            objects react to the actions
+            <span class="clr-good">(action.type -> action.payload).</span>
+          </li>
+          <li>
+            3. Return a new state object
+            <span class="clr-good">(without modifying the initial state)</span>
+          </li>
+        </ul>
+      </div>
+
+      <p>
+        <strong
+          >4. Define <span style="color: steelblue;">actions.js </span></strong
+        >
+      </p>
+
+      <img
+        class="img--two"
+        src="../img/Redux/Redux setUp/actionFolders.PNG"
+        alt=""
+      />
+      <img class="img--two" src="../img/Redux/Redux setUp/action.PNG" alt="" />
+
+      <ul>
+        <li>
+          type:
+          <span class="clr-good">The identifier of a specific action.</span>
+        </li>
+        <li>
+          payload:
+          <span class="clr-good">The changes we want the state to be.</span>
+        </li>
+      </ul>
+      <div class="important-block--good">
+        <p>
+          <strong
+            >5. Use <span style="color: steelblue;">combineReducers </span>to
+            create the root reducer object</strong
+          >
+        </p>
+
+        <img src="../img/Redux/Redux setUp/rootReducerFile.PNG" alt="" />
+
+        <p>
+          ⭐We <span class="clr-good">combine the state files </span>that we
+          split for better organization back to an
+          <span class="clr-good">intact rootReducer object </span>and export it
+          for store.
+        </p>
+      </div>
+
+      <p>
+        <strong
+          >6. Create <span style="color: steelblue;">store.js </span> and
+          <span style="color: steelblue;"
+            >connect it to "Provider"</span
+          ></strong
+        >
+      </p>
+
+      <img src="../img/Redux/Redux setUp/Store.PNG" alt="" />
+
+      <p>
+        ⭐ <span class="clr-good">Create store </span>with
+        <span style="color: steelblue;">createStore() </span>and config the
+        middleWare using
+        <span style="color: steelblue;">appleMiddleware()</span> and
+        <span style="color: steelblue;">export it for Provider.</span>
+      </p>
+
+      <img
+        style="width: 40%;"
+        src="../img/Redux/Redux setUp/connect Provider to store.PNG"
+        alt=""
+      />
+
+      <p class="clr-good">⭐Connect store to Provider.</p>
+
+      <div class="important-block--good">
+          <p>
+              <strong>7. 
+                <span class="clr-good">"setState"</span> from the component using <span class="clr-good">redux</span>
+              </strong>
+          </p>
+
+          <img src="../img/Redux/Redux setUp/setState.PNG" alt="">
+
+          <ul>
+            <li>import { connect } from "react-redux"</li>
+            <li>Only use the <span class="clr-good">second argument </span> of the <span class="clr-good">connect(null, mapDispatchToProps)({component})</span>
+            - <span style="color: orangered;">Gain access to the dispatch function which allows to define how do we wanna "set state"</span></span></li>
+            <li>Define the function we wanna use to "set state" - <span style="color: orangered;">Allowing the component to "setState" with the function (currentUser)</span></li>
+            </ul>
+
+            <img style="width: 40%" src="../img/Redux/Redux setUp/setState code.PNG" alt="">
+
+            <p>⭐Now we can use the function <span style="color: steelblue">setCurrentUser from the props.</span> <span style="color: orangered">dispatch to props</span></p>
+      </div>
+
+
+      <p>
+        <strong
+          >8. Component
+          <span class="clr-good"> "get state" as props </span></strong
+        >
+      </p>
+
+      <img src="../img/Redux/Redux setUp/connectWithComponent.PNG" alt="" />
+
+      <ul>
+        <li>import { connect } from "react-redux"</li>
+        <li>
+          Use the <span class="clr-good">first argument </span>of the
+          <span class="clr-good">connect(mapStateToProps)({component})</span>
+          -
+          <span style="color: orangered;"
+            >Allow component to have access to the rootRouter (state).</span
+          >
+        </li>
+        <li>
+          mapStateToProps(rootRouter) - just like
+          <span class="clr-good">this.state</span>
+        </li>
+      </ul>
+    </main>
+    <script src="../app.js"></script>
+  </body>
+</html>

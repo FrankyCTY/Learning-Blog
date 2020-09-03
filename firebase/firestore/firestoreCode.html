@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font awesome  -->
+    <link
+      rel="stylesheet"
+      href="https:+//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+      integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="
+      crossorigin="anonymous"
+    />
+
+    <!-- iconfont -->
+    <link
+      rel="stylesheet"
+      href="//at.alicdn.com/t/font_1791755_n1rvnnmldp.css"
+    />
+
+    <!-- css -->
+    <link rel="stylesheet" href="../../SCSS/mix.css" />
+
+    <title>Firestore Introduction</title>
+  </head>
+  <body>
+    <div class="menu">
+      <span>menu</span>
+    </div>
+    <header class="header">
+      <nav>
+        <ul class="nav-list">
+          <li><a href="../../tableOfContent.html">Javascript</a></li>
+          <li><a href="../../tableReact.html">React</a></li>
+          <li><a href="../../tableFirebase.html">Firebase</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main">
+      <h1 style="margin-bottom: 10vh;" class="page-title">Firestore Code</h1>
+
+      <p>
+        <span style="color: steelblue;">1. onSnapshot():</span>
+        DocRef.onSnapshot({snapshot}())<span class="clr-good"> -- Promise</span>
+      </p>
+      <p class="clr-bad">Monitor real time changes of data.</p>
+      <p>
+        <span style="color: steelblue;">2. docChanges().forEach():</span>
+        snapshot.docChanges().forEach({change}())
+      </p>
+      <p class="clr-bad">Monitor snapshot / snapshots changes.</p>
+      <img
+        style="width: 40%;"
+        src="../../img/firebase/firestore/code/onSnapshotdocChanges.PNG"
+        alt=""
+      />
+      <p>
+        <span style="color: steelblue;">3. get():</span>
+        docRef.get() -> snapshot<span class="clr-good"> -- Promise</span>
+      </p>
+      <p class="clr-bad">Get data for once and only.</p>
+      <p><span style="color: steelblue;">4. withConverter({conveter})</span></p>
+      <p class="clr-bad">
+        Define the data structure that firestore saves and sends a piece of
+        data.
+      </p>
+      <!-- =========================== Transactions and batched writes =========================== -->
+      <h3 class="page-subtitle">Transactions and batched writes</h3>
+
+      <p class="clr-bad">
+        <strong>Problem with without atomically writting data:</strong>
+      </p>
+      <p class="clr-good">
+        If the data data is denormalized across multiple documents, then...
+      </p>
+      <ul>
+        <li>
+          Writting to multiple docuemtns can be interrupted by external issues
+          (internet problem) and cause inconsistent data.
+          <span style="color: orangered;"
+            >(use batched writes: writing to > 1 data)</span
+          >
+        </li>
+        <li>
+          Data is a shared property that can be inconsistent because of being
+          modified by multiple parties.
+          <span style="color: orangered;"
+            >(use Transactions: multi-writing to ≥1 data)</span
+          >
+        </li>
+      </ul>
+
+      <p><strong>Batched writes</strong></p>
+      <p>
+        ⭐Allow us to perform a bunch of writes(delection / creation /
+        alteration) all at once in a batch.
+        <span style="color: orange;"
+          >One fails then entire will be rolled back to it's original
+          state.</span
+        >
+      </p>
+      <p style="color: steelblue;">
+        We only tell the SDK what changes we want to make, and the SDK will tell
+        the database to satisfy the changes.
+      </p>
+
+      <p><strong>Transction (Optimistic Concurrency Model)</strong></p>
+
+      <p>
+        ⭐It makes sure the target data is always up to date and
+        <span class="clr-good"
+          >the current writing will not mess up with other writing
+          (multi-writing).</span
+        >
+      </p>
+
+      <p class="clr-bad">Transaction fails -> retry</p>
+
+      <p style="color: orangered;">
+        ⭐A transaction consists of any number of get() operations followed by
+        any number of write operations such as set(), update(), or delete().
+      </p>
+
+      <ul>
+        <li>
+          Step 1: Read: Transaction requests for the document that holds the
+          data.
+        </li>
+        <li>
+          Step 2: Logic: Check if the operation is still possible logically.
+          (Online game example: Gold Exchange -> do the players have still have
+          the gold to exchange)
+        </li>
+
+        <li>
+          <span class="clr-good"
+            ><strong>Logic check </strong>is the reason why we don't use numeric
+            add function</span
+          >
+        </li>
+        <li>
+          Step 3: Changes: Perform the couple of writes based of that the data
+          is up to date.
+        </li>
+        <li>
+          Step 4: Double Check: Perform Sanity Check that data hasn't changed
+          since the first read.
+        </li>
+        <li>Step 5: Commit: Commit changes all at once.</li>
+      </ul>
+
+      <img
+        style="width: 40%;"
+        src="../../img/firebase/firestore/code/runTransaction.PNG"
+        alt=""
+      />
+
+      <p class="clr-good">Use cases for transaction:</p>
+      <ul>
+        <li>Transfer data between documents</li>
+        <li>
+          Other operation that might be modified by multiple writers + needed
+          logical check.
+          <span class="clr-bad"
+            >(Online game: We can not deduct player's money by $50 if he only
+            has $10)
+          </span>
+        </li>
+      </ul>
+
+      <!-- =========================== firestore.FieldValue.{} =========================== -->
+      <h3 class="page-subtitle">firestore.FieldValue.{}</h3>
+      <p>
+        <span style="color: steelblue;"
+          >1. firebase.firestore.<span style="color: orangered;"
+            >FieldValue.increment(50)</span
+          ></span
+        >
+      </p>
+      <p class="clr-bad">
+        Increment a numeric value: Atomically increment the population of the
+        city by 50.
+      </p>
+      <pre>
+          <code>
+            var washingtonRef = db.collection('cities').doc('DC');
+
+            washingtonRef.update({
+                population: firebase.firestore.FieldValue.increment(50)
+            });
+          </code>
+      </pre>
+      <!-- =========================== array =========================== -->
+      <p><strong>Update elements in an array</strong></p>
+      <p>
+        <span style="color: steelblue;"
+          >2. firebase.firestore.<span style="color: orangered;"
+            >FieldValue.arrayUnion({pieceOfData})</span
+          ></span
+        >
+      </p>
+      <p class="clr-bad">
+        Adds elements to an array but only elements not already present.
+      </p>
+      <pre>
+          <code>
+            var washingtonRef = db.collection("cities").doc("DC");
+
+            // Atomically add a new region to the "regions" array field.
+            washingtonRef.update({
+                regions: firebase.firestore.FieldValue.arrayUnion("greater_virginia")
+            });
+          </code>
+      </pre>
+
+      <p>
+        <span style="color: steelblue;"
+          >3. firebase.firestore.<span style="color: orangered;"
+            >FieldValue.arrayRemove({pieceOfData})</span
+          ></span
+        >
+      </p>
+      <p class="clr-bad">
+        Removes all instances of each given element.
+      </p>
+      <pre>
+          <code>
+            var washingtonRef = db.collection("cities").doc("DC");
+            
+            // Atomically remove a region from the "regions" array field.
+            washingtonRef.update({
+                regions: firebase.firestore.FieldValue.arrayRemove("east_coast")
+            });
+          </code>
+      </pre>
+    </main>
+
+    <script src="../../app.js"></script>
+  </body>
+</html>

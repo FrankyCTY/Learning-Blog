@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font awesome  -->
+    <link
+      rel="stylesheet"
+      href="https:+//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+      integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="
+      crossorigin="anonymous"
+    />
+
+    <!-- iconfont -->
+    <link
+      rel="stylesheet"
+      href="//at.alicdn.com/t/font_1791755_n1rvnnmldp.css"
+    />
+
+    <!-- css -->
+    <link rel="stylesheet" href="../SCSS/mix.css" />
+
+    <title>Redux</title>
+  </head>
+  <body>
+    <div class="menu">
+      <span>menu</span>
+    </div>
+    <header class="header">
+      <nav>
+        <ul class="nav-list">
+          <li><a href="../tableOfContent.html">Javascript</a></li>
+          <li><a href="../tableReact.html">React</a></li>
+          <li><a href="../tableFirebase.html">Firebase</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main">
+      <h1 class="page-title">
+        Redux
+      </h1>
+
+      <h3 class="page-subtitle">
+        Why do we need Redux?
+      </h3>
+
+      <img
+        style="display: block;"
+        src="../img/Redux/Redux Intro/withoutRedux.PNG"
+        alt=""
+      />
+
+      <p>
+        ⭐We use
+        <span class="clr-bad">this.state</span> on the
+        <span class="clr-bad">class components</span>
+        to
+        <span class="clr-good"
+          >achieve the one way data flow (state driven), </span
+        >but
+        <span class="clr-bad">states are getting harder to manage </span>once
+        the application gets bigger.
+      </p>
+
+      <img
+        style="display: block; width: 40%;"
+        src="../img/Redux/Redux Intro/prop drilling.PNG"
+        alt=""
+      />
+
+      <p>
+        ⭐<span class="clr-good">In a complex application,</span> a
+        <span class="clr-bad"
+          >state needed to be passed very deeply for a child
+          <span style="color: steelblue;">(prop drilling), </span></span
+        >which makes the code <span class="clr-bad">unmaintainable </span>and
+        <span class="clr-bad">unreadable.</span>
+      </p>
+
+      <h3 class="page-subtitle">
+        What is Redux?
+      </h3>
+
+      <p class="clr-good">We can use Redux to help manging the state.</p>
+
+      <img src="../img/Redux/Redux Intro/withRedux2.PNG" alt="" />
+
+      <div class="important-block--good">
+        <p>
+          ⭐<span class="clr-good">Redux</span> is a
+          <span style="color: orangered;">big javascript object</span> that
+          <span class="clr-good">store all the states </span>and used to
+          describe how our application should look.
+        </p>
+
+        <p>
+          We only need to <span class="clr-good">pass down the state </span> to
+          whichever component needs it
+          <span class="clr-good">as its props.</span>
+        </p>
+
+        <p class="clr-bad">
+          Struggling like how to manage states and how to modify child
+          component's state as a parent component are now gone/ .
+        </p>
+      </div>
+
+      <div class="important-block--good">
+        <p>
+          ⭐<span class="clr-good">Redux</span> also
+          <span style="color: orangered;"
+            >seperate the UI and the client side calculations</span
+          >
+          to the <span class="clr-good">Redux folders </span> which
+          <span class="clr-bad">we might had to put in the component file</span>
+          without Redux.
+        </p>
+      </div>
+
+      <h3 class="page-subtitle">
+        Redux Concepts
+      </h3>
+
+      <div class="important-block--good">
+        <p class="clr-good">Redux is good at:</p>
+        <ul>
+          <li>Managine Large State</li>
+          <li>Useful for sharing data between components</li>
+          <li>
+            Predictable state management using the
+            <span style="color: orangered;">3 principles</span>
+          </li>
+        </ul>
+
+        <p style="color: orangered;">The 3 principles:</p>
+        <ul>
+          <li>
+            Single source of truth
+            <span style="color: orangered;">(The big javascript object)</span>
+          </li>
+          <li>
+            State is read only
+            <span style="color: orangered;">(immutability)</span>
+          </li>
+          <li>
+            Changes using pure functions
+            <span style="color: orangered;"
+              >(predictable code / less error prone)</span
+            >
+          </li>
+        </ul>
+
+        <p>
+          <span style="color: steelblue;">Single source of truth: </span>We
+          store states inside of the big javascript object for easier state
+          mangement.
+        </p>
+        <p>
+          <span style="color: steelblue;">State is read only: </span>We make the
+          state to be immutable so that our application will have less error.
+          Each actions taken by the user will create new state instead of
+          modifing.
+        </p>
+        <p>
+          <span style="color: steelblue;">Changes using pure functions: </span
+          >Again, it makes the state immutable and predictable.
+        </p>
+      </div>
+
+      <h3 class="page-subtitle">
+        Redux Flow
+      </h3>
+
+      <img
+        style="display: block;"
+        src="../img/Redux/Redux setUp/redux flow with middleware.PNG"
+        alt=""
+      />
+
+      <ul>
+        <li>
+          <span style="color: steelblue;">Action.js</span> - An file contains
+          info about the user actions,
+          <span class="clr-good"
+            >containing the definition of different actions.</span
+          >
+        </li>
+        <li>
+          <span style="color: steelblue;">Splited Reducers</span> -
+          <span class="clr-good">Hold its own initial state,</span> and
+          <span class="clr-good"
+            >connect the prevState with the action. (pure function)</span
+          >
+        </li>
+        <li>
+          <span style="color: steelblue;">Root Reducer</span> - A
+          <span class="clr-good">final reducer</span>
+          that <span class="clr-good">combines the splited reducers</span> and
+          being <span class="clr-good">imported to the store file.</span>
+        </li>
+        <li>
+          <span style="color: steelblue;">Store</span> - The entire state of the
+          application and
+          <span class="clr-good">let us to add middleWare.</span>
+        </li>
+        <li>
+          <span style="color: steelblue;">DOM changes</span> - State changes
+          lead to react bot to make DOM changes
+        </li>
+      </ul>
+
+      <p>
+        As you can see, the <span class="clr-good">Redux flow </span>is also a
+        <span style="color: orangered;">one way data flow.</span>
+      </p>
+    </main>
+    <script src="../app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font awesome  -->
+    <link
+      rel="stylesheet"
+      href="https:+//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+      integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ="
+      crossorigin="anonymous"
+    />
+
+    <!-- iconfont -->
+    <link
+      rel="stylesheet"
+      href="//at.alicdn.com/t/font_1791755_n1rvnnmldp.css"
+    />
+
+    <!-- css -->
+    <link rel="stylesheet" href="../SCSS/mix.css" />
+
+    <title>Advanced Router</title>
+  </head>
+  <body>
+    <div class="menu">
+      <span>menu</span>
+    </div>
+    <header class="header">
+      <nav>
+        <ul class="nav-list">
+          <li><a href="../tableOfContent.html">Javascript</a></li>
+          <li><a href="../tableReact.html">React</a></li>
+          <li><a href="../tableFirebase.html">Firebase</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="main">
+      <h1 class="page-title">
+        Advanced Router
+      </h1>
+
+      <h3>Nested Router</h3>
+
+      <div class="important-block--good">
+        <p>
+          In some cases, we want to create nested url, which is a
+          <span class="clr-good">url based on the previous url.</span>
+        </p>
+
+        <p class="clr-bad">
+          But how do we make the nested url organized and flexible?
+        </p>
+
+        <p>
+          ⭐We use
+          <span style="color: orangered;"
+            ><strong>Nested Router + Redux + reselect</strong></span
+          >
+        </p>
+      </div>
+
+      <p class="clr-bad"><strong>Without Nested Router</strong></p>
+      <img
+        style="width: 50%;"
+        src="../img/React/Advanced Router/withoutNestedRouter.PNG"
+        alt=""
+      />
+
+      <p class="clr-bad">
+        If we split every routes, we lose the
+        <span style="color: steelblue;">flexibility</span> and the
+        <span style="color: steelblue;">reusablility</span>
+        of the "Front" route.
+      </p>
+
+      <p class="clr-good">
+        ⭐Demostration: Shopping Page and it's nested content
+      </p>
+
+      <div class="important-block--good">
+        <p><strong>App.js</strong></p>
+        <img
+          style="width: 40%;"
+          src="../img/React/Advanced Router/NestedRouterAppjs.PNG"
+          alt=""
+        />
+
+        <p>
+          1. The above route is the
+          <span style="color: orangered;">only path </span>that we can access
+          the nested routers.
+        </p>
+
+        <p>
+          2. it provides <span style="color: orangered;">flexibility</span> as
+          the
+          <span style="color: steelblue;"
+            >nested routers are connected with this "Front" Route
+            directly.</span
+          >
+        </p>
+
+        <p>
+          3.
+          <span style="color: red;">Note that we don't use exact here,</span>
+          because
+          <span style="color: limegreen;"
+            >we will have nested router saved inside of this Route.</span
+          >
+        </p>
+
+        4. The <span class="clr-good">"Front" Route</span>
+        <span style="color: orangered;">can be reused</span> and
+        <span style="color: orangered;"
+          >the url of it's nested Routers will stay consistent.</span
+        >
+      </div>
+
+      <div class="important-block--good">
+        <p><strong>ShopPage.jsx</strong></p>
+
+        <img
+          src="../img/React/Advanced Router/NestedRouterShopPage.PNG"
+          alt=""
+        />
+
+        <p>
+          ⭐ <span style="color: orangered;">ShopPage.js </span>contains it's
+          <span style="color: steelblue;">exact route </span>and the
+          <span style="color: steelblue;">nested route.</span>
+        </p>
+      </div>
+
+      <div class="important-block--good">
+        <p><strong>collection.jsx</strong></p>
+
+        <img
+          src="../img/React/Advanced Router/NestedRouterCollectionPage.PNG"
+          alt=""
+        />
+
+        <ul>
+          <li>
+            1. We get the
+            <span style="color: orangered;">params from the match </span>to
+            decide what data do we need for the specific collection.
+          </li>
+          <li>
+            2. We use
+            <span style="color: orangered;">redux and reselect</span> to
+            <span class="clr-good">organize our function </span>that used to
+            proccess the data.
+          </li>
+        </ul>
+      </div>
+    </main>
+
+    <script src="../app.js"></script>
+  </body>
+</html>
